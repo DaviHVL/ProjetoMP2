@@ -16,7 +16,7 @@ bool verificador_caracteres(string tabuleiro) {
 Função para verificar se há 64 caracteres.
 */
 bool verificador_numeros(string tabuleiro){
-    if (tabuleiros.length() == 64){
+    if (tabuleiro.length() == 64){
         return true;
     }
     else{
