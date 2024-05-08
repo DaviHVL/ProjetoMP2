@@ -30,5 +30,11 @@ Função para converter o que está no arquivo .txt em uma string.
 */
 string conversor_string(const string& nomeArquivo);
 
+/*
+Função para retirar todos '\n' e '\r' presentes na string.
+*/
+string limpa_string(string str);
+
+
 #endif   // RAINHAS_H_INCLUDED
 

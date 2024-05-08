@@ -1,6 +1,16 @@
 #include "rainhas.hpp"
 #include <fstream>
 #include <sstream>
+#include <algorithm>
+
+/*
+Implementação da função para retirar todos '\n' e '\r' presentes na string.
+*/
+string limpa_string(string str) {
+    str.erase(remove(str.begin(), str.end(), '\n'), str.end());
+    str.erase(remove(str.begin(), str.end(), '\r'), str.end());
+    return str;
+}
 
 /*
 Implementação da função para converter o que está no arquivo .txt em uma string.
@@ -12,9 +22,9 @@ string conversor_string(const string& nomeArquivo){
     if (file.is_open()) {
         resp << file.rdbuf();
         file.close();
-        return resp.str();
+        return limpa_string(resp.str());
     } else {
-        return "";
+        throw runtime_error("Failed to open file: " + nomeArquivo);
     }
 }
 
@@ -69,6 +79,7 @@ int resposta_rainhas(const string& nomeArquivo) {
     if (verificador_caracteres(nomeArquivo) == false) {
         return -1;
     }
+
     if (verificador_numeros(nomeArquivo) == false) {
         return -1;
     }
