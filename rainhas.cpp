@@ -15,11 +15,10 @@ bool verificador_caracteres(string tabuleiro) {
 /*
 Implementação da função para verificar se há 64 caracteres.
 */
-bool verificador_numeros(string tabuleiro){
-    if (tabuleiro.length() == 64){
+bool verificador_numeros(string tabuleiro) {
+    if (tabuleiro.length() == 64) {
         return true;
-    }
-    else{
+    } else {
         return false;
     }
 }
@@ -27,15 +26,15 @@ bool verificador_numeros(string tabuleiro){
 /*
 Implementação da função para verificar se há apenas uma 1 rainha em cada linha do tabuleiro.
 */
-bool verificador_umaRainha(string tabuleiro){
-    for (size_t i=0; i<64; i+=8){
+bool verificador_umaRainha(string tabuleiro) {
+    for (size_t i = 0; i < 64; i += 8) {
             int contad = 0;
-        for (size_t z=i; z<(i+8); z++){
-            if (tabuleiro[z]=='1'){
+        for (size_t z = i; z < (i + 8); z++) {
+            if (tabuleiro[z] == '1') {
                 contad++;
             }
         }
-        if (contad!=1){
+        if (contad != 1) {
             return false;
         }
     }
