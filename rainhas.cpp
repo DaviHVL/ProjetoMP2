@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <cmath>
 
 /*
 Implementação da função para retirar todos '\n' e '\r' presentes na string.
@@ -91,6 +92,31 @@ bool verificador_vertical(const string& nomeArquivo) {
 }
 
 /*
+Função para verificar se as rainhas interceptam uma a outra na diagonal.
+*/
+bool verificador_diagonal(const string& nomeArquivo) {
+    string tabuleiro = conversor_string(nomeArquivo);
+    vector<int> colunas(8, -1);
+
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if (tabuleiro[i * 8 + j] == '1') {
+                colunas[i] = j;
+                break;
+            }
+        }
+    }
+    for (int i = 0; i < 8; ++i) {
+        for (int j = i + 1; j < 8; ++j) {
+            if (abs(colunas[i] - colunas[j]) == abs(i - j)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+/*
 Implementação da função principal.
 */
 int resposta_rainhas(const string& nomeArquivo) {
@@ -101,12 +127,19 @@ int resposta_rainhas(const string& nomeArquivo) {
     if (verificador_numeros(nomeArquivo) == false) {
         return -1;
     }
+
     if (verificador_umaRainha(nomeArquivo) == false) {
         return -1;
     }
+
     if (verificador_vertical(nomeArquivo) == false) {
-        return -1;
+        return 0;
     }
-    return 0;
+
+    if (verificador_diagonal(nomeArquivo) == false) {
+        return 0;
+    }
+
+    return 1;
 }
 

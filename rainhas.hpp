@@ -40,5 +40,10 @@ Função para verificar se as rainhas interceptam uma a outra na vertical.
 */
 bool verificador_vertical(const string& nomeArquivo);
 
+/*
+Função para verificar se as rainhas interceptam uma a outra na diagonal.
+*/
+bool verificador_diagonal(const string& nomeArquivo);
+
 #endif   // RAINHAS_H_INCLUDED
 
