@@ -137,6 +137,42 @@ bool verificador_diagonal(const string& nomeArquivo) {
 }
 
 /*
+Função para gerar o arquivo ataques.txt.
+*/
+void gerador_ataques(const string& arquivoAtaques){
+    string tabuleiro = conversor_string(nomeArquivo);
+    vector<vector<int>> matriz(8, vector<int>(8, 0));
+
+    for (int i = 0; i < 64; ++i) {
+        matriz[i / 8][i % 8] = tabuleiro[i] - '0';
+    }
+
+    ofstream outFile("ataques.txt");
+
+    if (outFile.is_open()) {
+        vector<pair<int, int>> posis;
+
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (matriz[i][j] == 1) {
+                    posis.push_back({i, j});
+                }
+            }
+        }
+
+        for (int i = 0; i < posis.size(); ++i) {
+            for (int j = i + 1; j < posis.size(); ++j) {
+                int x1 = posis[i].first, y1 = posis[i].second;
+                int x2 = posis[j].first, y2 = posis[j].second;
+                if (x1 == x2 || y1 == y2 || abs(x1 - x2) == abs(y1 - y2)) {
+                    outFile << x1 << ", " << y1 << " " << x2 << ", " << y2 << "\n";
+                }
+            }
+        }
+        outFile.close();
+}
+
+/*
 Implementação da função principal.
 */
 int resposta_rainhas(const string& nomeArquivo) {
