@@ -51,3 +51,14 @@ TEST_CASE("Tabuleiros com rainhas na vertical", "[rainhas]") {
     REQUIRE(resposta_rainhas("arquivo20.txt") == 0);
 }
 
+TEST_CASE("Tabuleiros com rainhas na diagonal", "[rainhas]") {
+    REQUIRE(resposta_rainhas("arquivo21.txt") == 0);
+
+    REQUIRE(resposta_rainhas("arquivo22.txt") == 0);
+
+    REQUIRE(resposta_rainhas("arquivo23.txt") == 0);
+
+    REQUIRE(resposta_rainhas("arquivo24.txt") == 0);
+
+    REQUIRE(resposta_rainhas("arquivo25.txt") == 0);
+}
