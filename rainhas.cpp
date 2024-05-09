@@ -15,7 +15,7 @@ string limpa_string(string str) {
 /*
 Implementação da função para converter o que está no arquivo .txt em uma string.
 */
-string conversor_string(const string& nomeArquivo){
+string conversor_string(const string& nomeArquivo) {
     ifstream file(nomeArquivo);
     stringstream resp;
 
