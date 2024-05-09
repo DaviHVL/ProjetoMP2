@@ -30,13 +30,13 @@ TEST_CASE("Tabuleiros com numero inadequado de caracteres", "[rainhas]") {
 TEST_CASE("Tabuleiros com uma rainha em cada linha", "[rainhas]") {
     REQUIRE(resposta_rainhas("arquivo11.txt") == 0);
 
-    REQUIRE(resposta_rainhas("arquivo12.txt") == 0);
+    REQUIRE(resposta_rainhas("arquivo12.txt") == -1);
 
     REQUIRE(resposta_rainhas("arquivo13.txt") == 0);
 
-    REQUIRE(resposta_rainhas("arquivo14.txt") == 0);
+    REQUIRE(resposta_rainhas("arquivo14.txt") == -1);
 
-    REQUIRE(resposta_rainhas("arquivo15.txt") == 0);
+    REQUIRE(resposta_rainhas("arquivo15.txt") == -1);
 }
 
 TEST_CASE("Tabuleiros com rainhas na vertical", "[rainhas]") {

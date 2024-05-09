@@ -58,6 +58,24 @@ bool verificador_numeros(const string& nomeArquivo) {
 }
 
 /*
+Implementação da função para verificar se há exatamente 8 rainhas.
+*/
+bool verificador_numeroRainhas(const string& nomeArquivo){
+    string tabuleiro = conversor_string(nomeArquivo);
+    int contad=0;
+    for (size_t i = 0; i < 64; i ++) {
+        if (tabuleiro[i]=='1'){
+            contad++;
+        }
+    }
+    if (contad!=8){
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/*
 Implementação da função para verificar se há apenas uma 1 rainha em cada linha do tabuleiro.
 */
 bool verificador_umaRainha(const string& nomeArquivo) {
@@ -127,6 +145,10 @@ int resposta_rainhas(const string& nomeArquivo) {
     }
 
     if (verificador_numeros(nomeArquivo) == false) {
+        return -1;
+    }
+
+    if (verificador_numeroRainhas(nomeArquivo) == false) {
         return -1;
     }
 

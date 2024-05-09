@@ -19,6 +19,11 @@ Função para verificar se há 64 caracteres.
 bool verificador_numeros(const std::string& nomeArquivo);
 
 /*
+Função para verificar se há exatamente 8 rainhas.
+*/
+bool verificador_numeroRainhas(const std::string& nomeArquivo);
+
+/*
 Função para verificar se há apenas uma 1 rainha em cada linha do tabuleiro.
 */
 bool verificador_umaRainha(const std::string& nomeArquivo);
