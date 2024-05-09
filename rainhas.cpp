@@ -5,6 +5,8 @@
 #include <cmath>
 #include <vector>
 
+using namespace std;
+
 /*
 Implementação da função para retirar todos '\n' e '\r' presentes na string.
 */
