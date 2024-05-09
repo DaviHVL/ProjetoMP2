@@ -60,15 +60,15 @@ bool verificador_numeros(const string& nomeArquivo) {
 /*
 Implementação da função para verificar se há exatamente 8 rainhas.
 */
-bool verificador_numeroRainhas(const string& nomeArquivo){
+bool verificador_numeroRainhas(const string& nomeArquivo) {
     string tabuleiro = conversor_string(nomeArquivo);
-    int contad=0;
+    int contad = 0;
     for (size_t i = 0; i < 64; i ++) {
-        if (tabuleiro[i]=='1'){
+        if (tabuleiro[i] == '1') {
             contad++;
         }
     }
-    if (contad!=8){
+    if (contad != 8) {
         return false;
     } else {
         return true;
