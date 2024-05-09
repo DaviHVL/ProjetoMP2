@@ -144,7 +144,7 @@
        10:  142:      _M_head(_Head_base& __b) noexcept { return __b._M_head_impl; }
         -:  143:
         -:  144:      static constexpr const _Head&
-       59:  145:      _M_head(const _Head_base& __b) noexcept { return __b._M_head_impl; }
+       68:  145:      _M_head(const _Head_base& __b) noexcept { return __b._M_head_impl; }
         -:  146:
         -:  147:      _Head _M_head_impl;
         -:  148:    };
@@ -192,7 +192,7 @@
        10:  190:      _M_head(_Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
         -:  191:
         -:  192:      static constexpr const _Head&
-       59:  193:      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
+       68:  193:      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
         -:  194:
         -:  195:      static constexpr _Inherited&
         -:  196:      _M_tail(_Tuple_impl& __t) noexcept { return __t; }
@@ -1247,8 +1247,8 @@
         -: 1245:
         -: 1246:  template<std::size_t __i, typename _Head, typename... _Tail>
         -: 1247:    constexpr const _Head&
-       59: 1248:    __get_helper(const _Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
-       59: 1249:    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
+       68: 1248:    __get_helper(const _Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
+       68: 1249:    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
         -: 1250:
         -: 1251:  /// Return a reference to the ith element of a tuple.
         -: 1252:  template<std::size_t __i, typename... _Elements>
@@ -1259,8 +1259,8 @@
         -: 1257:  /// Return a const reference to the ith element of a const tuple.
         -: 1258:  template<std::size_t __i, typename... _Elements>
         -: 1259:    constexpr const __tuple_element_t<__i, tuple<_Elements...>>&
-       59: 1260:    get(const tuple<_Elements...>& __t) noexcept
-       59: 1261:    { return std::__get_helper<__i>(__t); }
+       68: 1260:    get(const tuple<_Elements...>& __t) noexcept
+       68: 1261:    { return std::__get_helper<__i>(__t); }
         -: 1262:
         -: 1263:  /// Return an rvalue reference to the ith element of a tuple rvalue.
         -: 1264:  template<std::size_t __i, typename... _Elements>

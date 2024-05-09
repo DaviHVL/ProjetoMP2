@@ -46,8 +46,8 @@
         -:   44:  };
         -:   45:  _GLIBCXX14_CONSTEXPR
         -:   46:  inline _Iter_less_iter
-        3:   47:  __iter_less_iter()
-        3:   48:  { return _Iter_less_iter(); }
+        5:   47:  __iter_less_iter()
+        5:   48:  { return _Iter_less_iter(); }
         -:   49:
         -:   50:  struct _Iter_less_val
         -:   51:  {
@@ -90,8 +90,8 @@
         -:   88:    };
         -:   89:
         -:   90:  inline _Iter_equal_to_iter
-        3:   91:  __iter_equal_to_iter()
-        3:   92:  { return _Iter_equal_to_iter(); }
+        5:   91:  __iter_equal_to_iter()
+        5:   92:  { return _Iter_equal_to_iter(); }
         -:   93:
         -:   94:  struct _Iter_equal_to_val
         -:   95:  {
@@ -186,20 +186,20 @@
         -:  184:    {
         -:  185:      _Value& _M_value;
         -:  186:
-        3:  187:      _Iter_equals_val(_Value& __value)
-        3:  188:	: _M_value(__value)
-        3:  189:      { }
+      157:  187:      _Iter_equals_val(_Value& __value)
+      157:  188:	: _M_value(__value)
+      157:  189:      { }
         -:  190:
         -:  191:      template<typename _Iterator>
         -:  192:	bool
-        3:  193:	operator()(_Iterator __it)
-        3:  194:	{ return *__it == _M_value; }
+     9794:  193:	operator()(_Iterator __it)
+     9794:  194:	{ return *__it == _M_value; }
         -:  195:    };
         -:  196:
         -:  197:  template<typename _Value>
         -:  198:    inline _Iter_equals_val<_Value>
-        3:  199:    __iter_equals_val(_Value& __val)
-        3:  200:    { return _Iter_equals_val<_Value>(__val); }
+      157:  199:    __iter_equals_val(_Value& __val)
+      157:  200:    { return _Iter_equals_val<_Value>(__val); }
         -:  201:
         -:  202:  template<typename _Iterator1>
         -:  203:    struct _Iter_equals_iter
@@ -222,13 +222,13 @@
         -:  220:    { return _Iter_equals_iter<_Iterator>(__it); }
         -:  221:
         -:  222:  template<typename _Predicate>
-        9:  223:    struct _Iter_pred
+       15:  223:    struct _Iter_pred
         -:  224:    {
         -:  225:      _Predicate _M_pred;
         -:  226:
-        3:  227:      _Iter_pred(_Predicate __pred)
-        3:  228:	: _M_pred(__pred)
-        3:  229:      { }
+        5:  227:      _Iter_pred(_Predicate __pred)
+        5:  228:	: _M_pred(__pred)
+        5:  229:      { }
         -:  230:
         -:  231:      template<typename _Iterator>
         -:  232:	bool
@@ -238,8 +238,8 @@
         -:  236:
         -:  237:  template<typename _Predicate>
         -:  238:    inline _Iter_pred<_Predicate>
-        3:  239:    __pred_iter(_Predicate __pred)
-        3:  240:    { return _Iter_pred<_Predicate>(__pred); }
+        5:  239:    __pred_iter(_Predicate __pred)
+        5:  240:    { return _Iter_pred<_Predicate>(__pred); }
         -:  241:
         -:  242:  template<typename _Compare, typename _Value>
         -:  243:    struct _Iter_comp_to_val

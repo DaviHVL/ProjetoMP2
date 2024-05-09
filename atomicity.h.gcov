@@ -47,12 +47,12 @@
         -:   45:  // __atomic_add_dispatch
         -:   46:#ifdef _GLIBCXX_ATOMIC_BUILTINS
         -:   47:  static inline _Atomic_word 
-     1007:   48:  __exchange_and_add(volatile _Atomic_word* __mem, int __val)
-     1007:   49:  { return __atomic_fetch_add(__mem, __val, __ATOMIC_ACQ_REL); }
+     1029:   48:  __exchange_and_add(volatile _Atomic_word* __mem, int __val)
+     1029:   49:  { return __atomic_fetch_add(__mem, __val, __ATOMIC_ACQ_REL); }
         -:   50:
         -:   51:  static inline void
-      913:   52:  __atomic_add(volatile _Atomic_word* __mem, int __val)
-      913:   53:  { __atomic_fetch_add(__mem, __val, __ATOMIC_ACQ_REL); }
+      923:   52:  __atomic_add(volatile _Atomic_word* __mem, int __val)
+      923:   53:  { __atomic_fetch_add(__mem, __val, __ATOMIC_ACQ_REL); }
         -:   54:#else
         -:   55:  _Atomic_word
         -:   56:  __attribute__ ((__unused__))
@@ -77,11 +77,11 @@
         -:   75:
         -:   76:  static inline _Atomic_word
         -:   77:  __attribute__ ((__unused__))
-     1007:   78:  __exchange_and_add_dispatch(_Atomic_word* __mem, int __val)
+     1029:   78:  __exchange_and_add_dispatch(_Atomic_word* __mem, int __val)
         -:   79:  {
         -:   80:#ifdef __GTHREADS
-     1007:   81:    if (__gthread_active_p())
-     1007:   82:      return __exchange_and_add(__mem, __val);
+     1029:   81:    if (__gthread_active_p())
+     1029:   82:      return __exchange_and_add(__mem, __val);
         -:   83:    else
     #####:   84:      return __exchange_and_add_single(__mem, __val);
         -:   85:#else
@@ -91,17 +91,17 @@
         -:   89:
         -:   90:  static inline void
         -:   91:  __attribute__ ((__unused__))
-      913:   92:  __atomic_add_dispatch(_Atomic_word* __mem, int __val)
+      923:   92:  __atomic_add_dispatch(_Atomic_word* __mem, int __val)
         -:   93:  {
         -:   94:#ifdef __GTHREADS
-      913:   95:    if (__gthread_active_p())
-      913:   96:      __atomic_add(__mem, __val);
+      923:   95:    if (__gthread_active_p())
+      923:   96:      __atomic_add(__mem, __val);
         -:   97:    else
     #####:   98:      __atomic_add_single(__mem, __val);
         -:   99:#else
         -:  100:    __atomic_add_single(__mem, __val);
         -:  101:#endif
-      913:  102:  }
+      923:  102:  }
         -:  103:
         -:  104:_GLIBCXX_END_NAMESPACE_VERSION
         -:  105:} // namespace

@@ -384,8 +384,8 @@
         -:  382:    {
         -:  383:      _GLIBCXX14_CONSTEXPR
         -:  384:      bool
-       23:  385:      operator()(const _Tp& __x, const _Tp& __y) const
-       23:  386:      { return __x < __y; }
+       32:  385:      operator()(const _Tp& __x, const _Tp& __y) const
+       32:  386:      { return __x < __y; }
         -:  387:    };
         -:  388:
         -:  389:  /// One of the @link comparison_functors comparison functors@endlink.
@@ -876,8 +876,8 @@
         -:  874:      { return __x; }
         -:  875:
         -:  876:      const _Tp&
-       15:  877:      operator()(const _Tp& __x) const
-       15:  878:      { return __x; }
+       28:  877:      operator()(const _Tp& __x) const
+       28:  878:      { return __x; }
         -:  879:    };
         -:  880:
         -:  881:  template<typename _Pair>

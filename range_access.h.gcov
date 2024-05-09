@@ -47,8 +47,8 @@
         -:   45:   */
         -:   46:  template<typename _Container>
         -:   47:    inline auto
-        6:   48:    begin(_Container& __cont) -> decltype(__cont.begin())
-        6:   49:    { return __cont.begin(); }
+       10:   48:    begin(_Container& __cont) -> decltype(__cont.begin())
+       10:   49:    { return __cont.begin(); }
         -:   50:
         -:   51:  /**
         -:   52:   *  @brief  Return an iterator pointing to the first element of
@@ -57,8 +57,8 @@
         -:   55:   */
         -:   56:  template<typename _Container>
         -:   57:    inline auto
-        3:   58:    begin(const _Container& __cont) -> decltype(__cont.begin())
-        3:   59:    { return __cont.begin(); }
+        5:   58:    begin(const _Container& __cont) -> decltype(__cont.begin())
+        5:   59:    { return __cont.begin(); }
         -:   60:
         -:   61:  /**
         -:   62:   *  @brief  Return an iterator pointing to one past the last element of
@@ -67,8 +67,8 @@
         -:   65:   */
         -:   66:  template<typename _Container>
         -:   67:    inline auto
-        9:   68:    end(_Container& __cont) -> decltype(__cont.end())
-        9:   69:    { return __cont.end(); }
+       15:   68:    end(_Container& __cont) -> decltype(__cont.end())
+       15:   69:    { return __cont.end(); }
         -:   70:
         -:   71:  /**
         -:   72:   *  @brief  Return an iterator pointing to one past the last element of
@@ -77,8 +77,8 @@
         -:   75:   */
         -:   76:  template<typename _Container>
         -:   77:    inline auto
-        6:   78:    end(const _Container& __cont) -> decltype(__cont.end())
-        6:   79:    { return __cont.end(); }
+       10:   78:    end(const _Container& __cont) -> decltype(__cont.end())
+       10:   79:    { return __cont.end(); }
         -:   80:
         -:   81:  /**
         -:   82:   *  @brief  Return an iterator pointing to the first element of the array.

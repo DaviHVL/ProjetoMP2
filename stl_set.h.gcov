@@ -479,11 +479,11 @@
         -:  477:       *  Insertion requires logarithmic time.
         -:  478:       */
         -:  479:      std::pair<iterator, bool>
-        3:  480:      insert(const value_type& __x)
+        5:  480:      insert(const value_type& __x)
         -:  481:      {
         -:  482:	std::pair<typename _Rep_type::iterator, bool> __p =
-        3:  483:	  _M_t._M_insert_unique(__x);
-        3:  484:	return std::pair<iterator, bool>(__p.first, __p.second);
+        5:  483:	  _M_t._M_insert_unique(__x);
+        5:  484:	return std::pair<iterator, bool>(__p.first, __p.second);
         -:  485:      }
         -:  486:
         -:  487:#if __cplusplus >= 201103L

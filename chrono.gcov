@@ -146,10 +146,10 @@
         -:  144:      {
         -:  145:	template<typename _Rep, typename _Period>
         -:  146:	  static constexpr _ToDur
-        6:  147:	  __cast(const duration<_Rep, _Period>& __d)
+       10:  147:	  __cast(const duration<_Rep, _Period>& __d)
         -:  148:	  {
         -:  149:	    typedef typename _ToDur::rep			__to_rep;
-        6:  150:	    return _ToDur(static_cast<__to_rep>(__d.count()));
+       10:  150:	    return _ToDur(static_cast<__to_rep>(__d.count()));
         -:  151:	  }
         -:  152:      };
         -:  153:
@@ -193,7 +193,7 @@
         -:  191:    template<typename _ToDur, typename _Rep, typename _Period>
         -:  192:      constexpr typename enable_if<__is_duration<_ToDur>::value,
         -:  193:				   _ToDur>::type
-        6:  194:      duration_cast(const duration<_Rep, _Period>& __d)
+       10:  194:      duration_cast(const duration<_Rep, _Period>& __d)
         -:  195:      {
         -:  196:	typedef typename _ToDur::period				__to_period;
         -:  197:	typedef typename _ToDur::rep				__to_rep;
@@ -202,7 +202,7 @@
         -:  200:	  							__cr;
         -:  201:	typedef  __duration_cast_impl<_ToDur, __cf, __cr,
         -:  202:				      __cf::num == 1, __cf::den == 1> __dc;
-        6:  203:	return __dc::__cast(__d);
+       10:  203:	return __dc::__cast(__d);
         -:  204:      }
         -:  205:
         -:  206:    /// treat_as_floating_point
@@ -262,8 +262,8 @@
         -:  260:	       enable_if<is_convertible<_Rep2, rep>::value
         -:  261:			 && (treat_as_floating_point<rep>::value
         -:  262:			     || !treat_as_floating_point<_Rep2>::value)>::type>
-        6:  263:	  constexpr explicit duration(const _Rep2& __rep)
-        6:  264:	  : __r(static_cast<rep>(__rep)) { }
+       10:  263:	  constexpr explicit duration(const _Rep2& __rep)
+       10:  264:	  : __r(static_cast<rep>(__rep)) { }
         -:  265:
         -:  266:	template<typename _Rep2, typename _Period2, typename = typename
         -:  267:	       enable_if<treat_as_floating_point<rep>::value
@@ -277,8 +277,8 @@
         -:  275:
         -:  276:	// 20.11.5.2 observer
         -:  277:	constexpr rep
-       12:  278:	count() const
-       12:  279:	{ return __r; }
+       20:  278:	count() const
+       20:  279:	{ return __r; }
         -:  280:
         -:  281:	// 20.11.5.3 arithmetic
         -:  282:	constexpr duration
@@ -567,8 +567,8 @@
         -:  565:
         -:  566:	// observer
         -:  567:	constexpr duration
-        6:  568:	time_since_epoch() const
-        6:  569:	{ return __d; }
+       10:  568:	time_since_epoch() const
+       10:  569:	{ return __d; }
         -:  570:
         -:  571:	// arithmetic
         -:  572:	time_point&

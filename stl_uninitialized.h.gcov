@@ -67,15 +67,15 @@
         -:   65:    {
         -:   66:      template<typename _InputIterator, typename _ForwardIterator>
         -:   67:        static _ForwardIterator
-     1001:   68:        __uninit_copy(_InputIterator __first, _InputIterator __last,
+     1030:   68:        __uninit_copy(_InputIterator __first, _InputIterator __last,
         -:   69:		      _ForwardIterator __result)
         -:   70:        {
-     1001:   71:	  _ForwardIterator __cur = __result;
+     1030:   71:	  _ForwardIterator __cur = __result;
         -:   72:	  __try
         -:   73:	    {
-     6193:   74:	      for (; __first != __last; ++__first, (void)++__cur)
-     2596:   75:		std::_Construct(std::__addressof(*__cur), *__first);
-     1001:   76:	      return __cur;
+     6278:   74:	      for (; __first != __last; ++__first, (void)++__cur)
+     2624:   75:		std::_Construct(std::__addressof(*__cur), *__first);
+     1030:   76:	      return __cur;
         -:   77:	    }
     =====:   78:	  __catch(...)
         -:   79:	    {
@@ -106,7 +106,7 @@
         -:  104:  */
         -:  105:  template<typename _InputIterator, typename _ForwardIterator>
         -:  106:    inline _ForwardIterator
-     1001:  107:    uninitialized_copy(_InputIterator __first, _InputIterator __last,
+     1030:  107:    uninitialized_copy(_InputIterator __first, _InputIterator __last,
         -:  108:		       _ForwardIterator __result)
         -:  109:    {
         -:  110:      typedef typename iterator_traits<_InputIterator>::value_type
@@ -119,13 +119,13 @@
         -:  117:      // trivial types can have deleted assignment
         -:  118:      typedef typename iterator_traits<_InputIterator>::reference _RefType1;
         -:  119:      typedef typename iterator_traits<_ForwardIterator>::reference _RefType2;
-     1001:  120:      const bool __assignable = is_assignable<_RefType2, _RefType1>::value;
+     1030:  120:      const bool __assignable = is_assignable<_RefType2, _RefType1>::value;
         -:  121:#endif
         -:  122:
         -:  123:      return std::__uninitialized_copy<__is_trivial(_ValueType1)
         -:  124:				       && __is_trivial(_ValueType2)
         -:  125:				       && __assignable>::
-     1001:  126:	__uninit_copy(__first, __last, __result);
+     1030:  126:	__uninit_copy(__first, __last, __result);
         -:  127:    }
         -:  128:
         -:  129:
@@ -217,9 +217,9 @@
         -:  215:    {
         -:  216:      template<typename _ForwardIterator, typename _Size, typename _Tp>
         -:  217:        static _ForwardIterator
-        -:  218:        __uninit_fill_n(_ForwardIterator __first, _Size __n,
+        6:  218:        __uninit_fill_n(_ForwardIterator __first, _Size __n,
         -:  219:			const _Tp& __x)
-        -:  220:        { return std::fill_n(__first, __n, __x); }
+        6:  220:        { return std::fill_n(__first, __n, __x); }
         -:  221:    };
         -:  222:
         -:  223:   // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -235,7 +235,7 @@
         -:  233:  */
         -:  234:  template<typename _ForwardIterator, typename _Size, typename _Tp>
         -:  235:    inline _ForwardIterator
-        -:  236:    uninitialized_fill_n(_ForwardIterator __first, _Size __n, const _Tp& __x)
+        6:  236:    uninitialized_fill_n(_ForwardIterator __first, _Size __n, const _Tp& __x)
         -:  237:    {
         -:  238:      typedef typename iterator_traits<_ForwardIterator>::value_type
         -:  239:	_ValueType;
@@ -243,10 +243,10 @@
         -:  241:      const bool __assignable = true;
         -:  242:#else
         -:  243:      // trivial types can have deleted assignment
-        -:  244:      const bool __assignable = is_copy_assignable<_ValueType>::value;
+        6:  244:      const bool __assignable = is_copy_assignable<_ValueType>::value;
         -:  245:#endif
         -:  246:      return __uninitialized_fill_n<__is_trivial(_ValueType) && __assignable>::
-        -:  247:	__uninit_fill_n(__first, __n, __x);
+        6:  247:	__uninit_fill_n(__first, __n, __x);
         -:  248:    }
         -:  249:
         -:  250:  // Extensions: versions of uninitialized_copy, uninitialized_fill,
@@ -278,9 +278,9 @@
         -:  276:
         -:  277:  template<typename _InputIterator, typename _ForwardIterator, typename _Tp>
         -:  278:    inline _ForwardIterator
-     1001:  279:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
+     1030:  279:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
         -:  280:			   _ForwardIterator __result, allocator<_Tp>&)
-     1001:  281:    { return std::uninitialized_copy(__first, __last, __result); }
+     1030:  281:    { return std::uninitialized_copy(__first, __last, __result); }
         -:  282:
         -:  283:  template<typename _InputIterator, typename _ForwardIterator,
         -:  284:	   typename _Allocator>
@@ -296,14 +296,14 @@
         -:  294:  template<typename _InputIterator, typename _ForwardIterator,
         -:  295:	   typename _Allocator>
         -:  296:    inline _ForwardIterator
-       87:  297:    __uninitialized_move_if_noexcept_a(_InputIterator __first,
+       94:  297:    __uninitialized_move_if_noexcept_a(_InputIterator __first,
         -:  298:				       _InputIterator __last,
         -:  299:				       _ForwardIterator __result,
         -:  300:				       _Allocator& __alloc)
         -:  301:    {
         -:  302:      return std::__uninitialized_copy_a
-       87:  303:	(_GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__first),
-       87:  304:	 _GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__last), __result, __alloc);
+       94:  303:	(_GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__first),
+       94:  304:	 _GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__last), __result, __alloc);
         -:  305:    }
         -:  306:
         -:  307:  template<typename _ForwardIterator, typename _Tp, typename _Allocator>
@@ -355,9 +355,9 @@
         -:  353:  template<typename _ForwardIterator, typename _Size, typename _Tp,
         -:  354:	   typename _Tp2>
         -:  355:    inline _ForwardIterator
-        -:  356:    __uninitialized_fill_n_a(_ForwardIterator __first, _Size __n, 
+        6:  356:    __uninitialized_fill_n_a(_ForwardIterator __first, _Size __n, 
         -:  357:			     const _Tp& __x, allocator<_Tp2>&)
-        -:  358:    { return std::uninitialized_fill_n(__first, __n, __x); }
+        6:  358:    { return std::uninitialized_fill_n(__first, __n, __x); }
         -:  359:
         -:  360:
         -:  361:  // Extensions: __uninitialized_copy_move, __uninitialized_move_copy,

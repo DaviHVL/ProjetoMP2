@@ -5057,11 +5057,11 @@
         -: 5055:  template<typename _CharT>
         -: 5056:    inline
         -: 5057:    typename __gnu_cxx::__enable_if<__is_char<_CharT>::__value, bool>::__type
-        3: 5058:    operator==(const basic_string<_CharT>& __lhs,
+        5: 5058:    operator==(const basic_string<_CharT>& __lhs,
         -: 5059:	       const basic_string<_CharT>& __rhs) _GLIBCXX_NOEXCEPT
-        3: 5060:    { return (__lhs.size() == __rhs.size()
-        3: 5061:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
-        3: 5062:						    __lhs.size())); }
+        5: 5060:    { return (__lhs.size() == __rhs.size()
+        5: 5061:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
+        5: 5062:						    __lhs.size())); }
         -: 5063:
         -: 5064:  /**
         -: 5065:   *  @brief  Test equivalence of C string and string.
@@ -5083,9 +5083,9 @@
         -: 5081:   */
         -: 5082:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 5083:    inline bool
-       54: 5084:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+       90: 5084:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
         -: 5085:	       const _CharT* __rhs)
-       54: 5086:    { return __lhs.compare(__rhs) == 0; }
+       90: 5086:    { return __lhs.compare(__rhs) == 0; }
         -: 5087:
         -: 5088:  // operator !=
         -: 5089:  /**
@@ -5134,10 +5134,10 @@
         -: 5132:   */
         -: 5133:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 5134:    inline bool
-       21: 5135:    operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+       30: 5135:    operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
         -: 5136:	      const basic_string<_CharT, _Traits, _Alloc>& __rhs)
         -: 5137:    _GLIBCXX_NOEXCEPT
-       21: 5138:    { return __lhs.compare(__rhs) < 0; }
+       30: 5138:    { return __lhs.compare(__rhs) < 0; }
         -: 5139:
         -: 5140:  /**
         -: 5141:   *  @brief  Test if string precedes C string.

@@ -400,10 +400,10 @@
         -:  398:#endif /* __GTHREAD_I486_INLINE_LOCK_PRIMITIVES */
         -:  399:
         -:  400:static inline int
-     1920:  401:__gthread_active_p (void)
+     1952:  401:__gthread_active_p (void)
         -:  402:{
         -:  403:#ifdef MINGW32_SUPPORTS_MT_EH
-     1920:  404:  return _CRT_MT;
+     1952:  404:  return _CRT_MT;
         -:  405:#else
         -:  406:  return 1;
         -:  407:#endif

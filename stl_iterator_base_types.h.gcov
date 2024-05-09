@@ -117,7 +117,7 @@
         -:  115:  */
         -:  116:  template<typename _Category, typename _Tp, typename _Distance = ptrdiff_t,
         -:  117:           typename _Pointer = _Tp*, typename _Reference = _Tp&>
-        6:  118:    struct iterator
+       10:  118:    struct iterator
         -:  119:    {
         -:  120:      /// One of the @link iterator_tags tag types@endlink.
         -:  121:      typedef _Category  iterator_category;
@@ -203,8 +203,8 @@
         -:  201:  */
         -:  202:  template<typename _Iter>
         -:  203:    inline typename iterator_traits<_Iter>::iterator_category
-        8:  204:    __iterator_category(const _Iter&)
-        8:  205:    { return typename iterator_traits<_Iter>::iterator_category(); }
+      164:  204:    __iterator_category(const _Iter&)
+      164:  205:    { return typename iterator_traits<_Iter>::iterator_category(); }
         -:  206:
         -:  207:  //@}
         -:  208:

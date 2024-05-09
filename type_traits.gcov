@@ -2051,7 +2051,7 @@
         -: 2049:  */
         -: 2050:  template<std::size_t _Len, std::size_t _Align =
         -: 2051:	   __alignof__(typename __aligned_storage_msa<_Len>::__type)>
-       44: 2052:    struct aligned_storage
+       48: 2052:    struct aligned_storage
         -: 2053:    { 
         -: 2054:      union type
         -: 2055:      {

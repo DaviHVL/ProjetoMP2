@@ -218,14 +218,14 @@
         -:  216:  template<typename _Tp>
         -:  217:    _GLIBCXX14_CONSTEXPR
         -:  218:    inline const _Tp&
-       88:  219:    max(const _Tp& __a, const _Tp& __b)
+       95:  219:    max(const _Tp& __a, const _Tp& __b)
         -:  220:    {
         -:  221:      // concept requirements
         -:  222:      __glibcxx_function_requires(_LessThanComparableConcept<_Tp>)
         -:  223:      //return  __a < __b ? __b : __a;
-       88:  224:      if (__a < __b)
-       41:  225:	return __b;
-       47:  226:      return __a;
+       95:  224:      if (__a < __b)
+       47:  225:	return __b;
+       48:  226:      return __a;
         -:  227:    }
         -:  228:
         -:  229:  /**
@@ -276,8 +276,8 @@
         -:  274:  // remove the __normal_iterator wrapper. See copy, fill, ...
         -:  275:  template<typename _Iterator>
         -:  276:    inline _Iterator
-    #####:  277:    __niter_base(_Iterator __it)
-    #####:  278:    { return __it; }
+        6:  277:    __niter_base(_Iterator __it)
+        6:  278:    { return __it; }
         -:  279:
         -:  280:  // All of these auxiliary structs serve two purposes.  (1) Replace
         -:  281:  // calls to copy with memmove whenever possible.  (Memmove, not memcpy,
@@ -748,13 +748,13 @@
         -:  746:  template<typename _OutputIterator, typename _Size, typename _Tp>
         -:  747:    inline typename
         -:  748:    __gnu_cxx::__enable_if<__is_scalar<_Tp>::__value, _OutputIterator>::__type
-    #####:  749:    __fill_n_a(_OutputIterator __first, _Size __n, const _Tp& __value)
+        6:  749:    __fill_n_a(_OutputIterator __first, _Size __n, const _Tp& __value)
         -:  750:    {
-    #####:  751:      const _Tp __tmp = __value;
-    #####:  752:      for (__decltype(__n + 0) __niter = __n;
-    #####:  753:	   __niter > 0; --__niter, ++__first)
-    #####:  754:	*__first = __tmp;
-    #####:  755:      return __first;
+        6:  751:      const _Tp __tmp = __value;
+       54:  752:      for (__decltype(__n + 0) __niter = __n;
+       54:  753:	   __niter > 0; --__niter, ++__first)
+       48:  754:	*__first = __tmp;
+        6:  755:      return __first;
         -:  756:    }
         -:  757:
         -:  758:  template<typename _Size, typename _Tp>
@@ -783,12 +783,12 @@
         -:  781:  */
         -:  782:  template<typename _OI, typename _Size, typename _Tp>
         -:  783:    inline _OI
-    #####:  784:    fill_n(_OI __first, _Size __n, const _Tp& __value)
+        6:  784:    fill_n(_OI __first, _Size __n, const _Tp& __value)
         -:  785:    {
         -:  786:      // concept requirements
         -:  787:      __glibcxx_function_requires(_OutputIteratorConcept<_OI, _Tp>)
         -:  788:
-    #####:  789:      return _OI(std::__fill_n_a(std::__niter_base(__first), __n, __value));
+        6:  789:      return _OI(std::__fill_n_a(std::__niter_base(__first), __n, __value));
         -:  790:    }
         -:  791:
         -:  792:  template<bool _BoolType>
@@ -999,8 +999,8 @@
         -:  997:  /// This is a helper function for the sort routines and for random.tcc.
         -:  998:  //  Precondition: __n > 0.
         -:  999:  inline _GLIBCXX_CONSTEXPR int
-        3: 1000:  __lg(int __n)
-        3: 1001:  { return sizeof(int) * __CHAR_BIT__  - 1 - __builtin_clz(__n); }
+        5: 1000:  __lg(int __n)
+        5: 1001:  { return sizeof(int) * __CHAR_BIT__  - 1 - __builtin_clz(__n); }
         -: 1002:
         -: 1003:  inline _GLIBCXX_CONSTEXPR unsigned
         -: 1004:  __lg(unsigned __n)

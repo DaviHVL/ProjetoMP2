@@ -111,57 +111,57 @@
         -:  109:  /// This is an overload used by find algos for the RAI case.
         -:  110:  template<typename _RandomAccessIterator, typename _Predicate>
         -:  111:    _RandomAccessIterator
-        6:  112:    __find_if(_RandomAccessIterator __first, _RandomAccessIterator __last,
+      162:  112:    __find_if(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  113:	      _Predicate __pred, random_access_iterator_tag)
         -:  114:    {
         -:  115:      typename iterator_traits<_RandomAccessIterator>::difference_type
-        6:  116:	__trip_count = (__last - __first) >> 2;
+      162:  116:	__trip_count = (__last - __first) >> 2;
         -:  117:
-        6:  118:      for (; __trip_count > 0; --__trip_count)
+     2764:  118:      for (; __trip_count > 0; --__trip_count)
         -:  119:	{
-    #####:  120:	  if (__pred(__first))
-    #####:  121:	    return __first;
-    #####:  122:	  ++__first;
+     1374:  120:	  if (__pred(__first))
+       73:  121:	    return __first;
+     1301:  122:	  ++__first;
         -:  123:
-    #####:  124:	  if (__pred(__first))
+     1301:  124:	  if (__pred(__first))
     #####:  125:	    return __first;
-    #####:  126:	  ++__first;
+     1301:  126:	  ++__first;
         -:  127:
-    #####:  128:	  if (__pred(__first))
+     1301:  128:	  if (__pred(__first))
     #####:  129:	    return __first;
-    #####:  130:	  ++__first;
+     1301:  130:	  ++__first;
         -:  131:
-    #####:  132:	  if (__pred(__first))
+     1301:  132:	  if (__pred(__first))
     #####:  133:	    return __first;
-    #####:  134:	  ++__first;
+     1301:  134:	  ++__first;
         -:  135:	}
         -:  136:
-        6:  137:      switch (__last - __first)
+       89:  137:      switch (__last - __first)
         -:  138:	{
         -:  139:	case 3:
-    #####:  140:	  if (__pred(__first))
+        4:  140:	  if (__pred(__first))
     #####:  141:	    return __first;
-    #####:  142:	  ++__first;
+        4:  142:	  ++__first;
         -:  143:	case 2:
-    #####:  144:	  if (__pred(__first))
+        6:  144:	  if (__pred(__first))
     #####:  145:	    return __first;
-    #####:  146:	  ++__first;
+        6:  146:	  ++__first;
         -:  147:	case 1:
-        3:  148:	  if (__pred(__first))
+       17:  148:	  if (__pred(__first))
     #####:  149:	    return __first;
-        3:  150:	  ++__first;
+       17:  150:	  ++__first;
         -:  151:	case 0:
         -:  152:	default:
-        6:  153:	  return __last;
+       89:  153:	  return __last;
         -:  154:	}
         -:  155:    }
         -:  156:
         -:  157:  template<typename _Iterator, typename _Predicate>
         -:  158:    inline _Iterator
-        6:  159:    __find_if(_Iterator __first, _Iterator __last, _Predicate __pred)
+      162:  159:    __find_if(_Iterator __first, _Iterator __last, _Predicate __pred)
         -:  160:    {
-        6:  161:      return __find_if(__first, __last, __pred,
-       12:  162:		       std::__iterator_category(__first));
+       10:  161:      return __find_if(__first, __last, __pred,
+      172:  162:		       std::__iterator_category(__first));
         -:  163:    }
         -:  164:
         -:  165:  /// Provided for stable_partition to use.
@@ -856,21 +856,21 @@
         -:  854:
         -:  855:  template<typename _ForwardIterator, typename _Predicate>
         -:  856:    _ForwardIterator
-    #####:  857:    __remove_if(_ForwardIterator __first, _ForwardIterator __last,
+      152:  857:    __remove_if(_ForwardIterator __first, _ForwardIterator __last,
         -:  858:		_Predicate __pred)
         -:  859:    {
-    #####:  860:      __first = std::__find_if(__first, __last, __pred);
-    #####:  861:      if (__first == __last)
-    #####:  862:	return __first;
-    #####:  863:      _ForwardIterator __result = __first;
-    #####:  864:      ++__first;
-    #####:  865:      for (; __first != __last; ++__first)
-    #####:  866:	if (!__pred(__first))
+      152:  860:      __first = std::__find_if(__first, __last, __pred);
+      152:  861:      if (__first == __last)
+       79:  862:	return __first;
+       73:  863:      _ForwardIterator __result = __first;
+       73:  864:      ++__first;
+     9053:  865:      for (; __first != __last; ++__first)
+     4490:  866:	if (!__pred(__first))
         -:  867:	  {
-    #####:  868:	    *__result = _GLIBCXX_MOVE(*__first);
-    #####:  869:	    ++__result;
+     4052:  868:	    *__result = _GLIBCXX_MOVE(*__first);
+     4052:  869:	    ++__result;
         -:  870:	  }
-    #####:  871:      return __result;
+       73:  871:      return __result;
         -:  872:    }
         -:  873:
         -:  874:  /**
@@ -892,7 +892,7 @@
         -:  890:  */
         -:  891:  template<typename _ForwardIterator, typename _Tp>
         -:  892:    inline _ForwardIterator
-    #####:  893:    remove(_ForwardIterator __first, _ForwardIterator __last,
+      152:  893:    remove(_ForwardIterator __first, _ForwardIterator __last,
         -:  894:	   const _Tp& __value)
         -:  895:    {
         -:  896:      // concept requirements
@@ -902,8 +902,8 @@
         -:  900:	    typename iterator_traits<_ForwardIterator>::value_type, _Tp>)
         -:  901:      __glibcxx_requires_valid_range(__first, __last);
         -:  902:
-    #####:  903:      return std::__remove_if(__first, __last,
-    #####:  904:		__gnu_cxx::__ops::__iter_equals_val(__value));
+      152:  903:      return std::__remove_if(__first, __last,
+      152:  904:		__gnu_cxx::__ops::__iter_equals_val(__value));
         -:  905:    }
         -:  906:
         -:  907:  /**
@@ -941,30 +941,30 @@
         -:  939:
         -:  940:  template<typename _ForwardIterator, typename _BinaryPredicate>
         -:  941:    _ForwardIterator
-        3:  942:    __adjacent_find(_ForwardIterator __first, _ForwardIterator __last,
+        5:  942:    __adjacent_find(_ForwardIterator __first, _ForwardIterator __last,
         -:  943:		    _BinaryPredicate __binary_pred)
         -:  944:    {
-        3:  945:      if (__first == __last)
+        5:  945:      if (__first == __last)
     #####:  946:	return __last;
-        3:  947:      _ForwardIterator __next = __first;
-        3:  948:      while (++__next != __last)
+        5:  947:      _ForwardIterator __next = __first;
+        5:  948:      while (++__next != __last)
         -:  949:	{
     #####:  950:	  if (__binary_pred(__first, __next))
     #####:  951:	    return __first;
     #####:  952:	  __first = __next;
         -:  953:	}
-        3:  954:      return __last;
+        5:  954:      return __last;
         -:  955:    }
         -:  956:
         -:  957:  template<typename _ForwardIterator, typename _BinaryPredicate>
         -:  958:    _ForwardIterator
-        3:  959:    __unique(_ForwardIterator __first, _ForwardIterator __last,
+        5:  959:    __unique(_ForwardIterator __first, _ForwardIterator __last,
         -:  960:	     _BinaryPredicate __binary_pred)
         -:  961:    {
         -:  962:      // Skip the beginning, if already unique.
-        3:  963:      __first = std::__adjacent_find(__first, __last, __binary_pred);
-        3:  964:      if (__first == __last)
-        3:  965:	return __last;
+        5:  963:      __first = std::__adjacent_find(__first, __last, __binary_pred);
+        5:  964:      if (__first == __last)
+        5:  965:	return __last;
         -:  966:
         -:  967:      // Do the real copy work.
     #####:  968:      _ForwardIterator __dest = __first;
@@ -991,7 +991,7 @@
         -:  989:  */
         -:  990:  template<typename _ForwardIterator>
         -:  991:    inline _ForwardIterator
-        3:  992:    unique(_ForwardIterator __first, _ForwardIterator __last)
+        5:  992:    unique(_ForwardIterator __first, _ForwardIterator __last)
         -:  993:    {
         -:  994:      // concept requirements
         -:  995:      __glibcxx_function_requires(_Mutable_ForwardIteratorConcept<
@@ -1001,7 +1001,7 @@
         -:  999:      __glibcxx_requires_valid_range(__first, __last);
         -: 1000:
         -: 1001:      return std::__unique(__first, __last,
-        3: 1002:			   __gnu_cxx::__ops::__iter_equal_to_iter());
+        5: 1002:			   __gnu_cxx::__ops::__iter_equal_to_iter());
         -: 1003:    }
         -: 1004:
         -: 1005:  /**
@@ -1836,12 +1836,12 @@
         -: 1834:  /// This is a helper function for the sort routine.
         -: 1835:  template<typename _RandomAccessIterator, typename _Compare>
         -: 1836:    void
-        3: 1837:    __insertion_sort(_RandomAccessIterator __first,
+        5: 1837:    __insertion_sort(_RandomAccessIterator __first,
         -: 1838:		     _RandomAccessIterator __last, _Compare __comp)
         -: 1839:    {
-        3: 1840:      if (__first == __last) return;
+        5: 1840:      if (__first == __last) return;
         -: 1841:
-        3: 1842:      for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+        5: 1842:      for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
         -: 1843:	{
     #####: 1844:	  if (__comp(__i, __first))
         -: 1845:	    {
@@ -1876,18 +1876,18 @@
         -: 1874:  /// This is a helper function for the sort routine.
         -: 1875:  template<typename _RandomAccessIterator, typename _Compare>
         -: 1876:    void
-        3: 1877:    __final_insertion_sort(_RandomAccessIterator __first,
+        5: 1877:    __final_insertion_sort(_RandomAccessIterator __first,
         -: 1878:			   _RandomAccessIterator __last, _Compare __comp)
         -: 1879:    {
-        3: 1880:      if (__last - __first > int(_S_threshold))
+        5: 1880:      if (__last - __first > int(_S_threshold))
         -: 1881:	{
     #####: 1882:	  std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
     #####: 1883:	  std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
         -: 1884:					  __comp);
         -: 1885:	}
         -: 1886:      else
-        3: 1887:	std::__insertion_sort(__first, __last, __comp);
-        3: 1888:    }
+        5: 1887:	std::__insertion_sort(__first, __last, __comp);
+        5: 1888:    }
         -: 1889:
         -: 1890:  /// This is a helper function...
         -: 1891:  template<typename _RandomAccessIterator, typename _Compare>
@@ -1936,11 +1936,11 @@
         -: 1934:  /// This is a helper function for the sort routine.
         -: 1935:  template<typename _RandomAccessIterator, typename _Size, typename _Compare>
         -: 1936:    void
-        3: 1937:    __introsort_loop(_RandomAccessIterator __first,
+        5: 1937:    __introsort_loop(_RandomAccessIterator __first,
         -: 1938:		     _RandomAccessIterator __last,
         -: 1939:		     _Size __depth_limit, _Compare __comp)
         -: 1940:    {
-        3: 1941:      while (__last - __first > int(_S_threshold))
+        5: 1941:      while (__last - __first > int(_S_threshold))
         -: 1942:	{
     #####: 1943:	  if (__depth_limit == 0)
         -: 1944:	    {
@@ -1959,17 +1959,17 @@
         -: 1957:
         -: 1958:  template<typename _RandomAccessIterator, typename _Compare>
         -: 1959:    inline void
-        3: 1960:    __sort(_RandomAccessIterator __first, _RandomAccessIterator __last,
+        5: 1960:    __sort(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -: 1961:	   _Compare __comp)
         -: 1962:    {
-        3: 1963:      if (__first != __last)
+        5: 1963:      if (__first != __last)
         -: 1964:	{
-        3: 1965:	  std::__introsort_loop(__first, __last,
-        3: 1966:				std::__lg(__last - __first) * 2,
+        5: 1965:	  std::__introsort_loop(__first, __last,
+        5: 1966:				std::__lg(__last - __first) * 2,
         -: 1967:				__comp);
-        3: 1968:	  std::__final_insertion_sort(__first, __last, __comp);
+        5: 1968:	  std::__final_insertion_sort(__first, __last, __comp);
         -: 1969:	}
-        3: 1970:    }
+        5: 1970:    }
         -: 1971:
         -: 1972:  template<typename _RandomAccessIterator, typename _Size, typename _Compare>
         -: 1973:    void
@@ -3783,7 +3783,7 @@
         -: 3781:  */
         -: 3782:  template<typename _InputIterator, typename _Tp>
         -: 3783:    inline _InputIterator
-        3: 3784:    find(_InputIterator __first, _InputIterator __last,
+        5: 3784:    find(_InputIterator __first, _InputIterator __last,
         -: 3785:	 const _Tp& __val)
         -: 3786:    {
         -: 3787:      // concept requirements
@@ -3791,8 +3791,8 @@
         -: 3789:      __glibcxx_function_requires(_EqualOpConcept<
         -: 3790:		typename iterator_traits<_InputIterator>::value_type, _Tp>)
         -: 3791:      __glibcxx_requires_valid_range(__first, __last);
-        3: 3792:      return std::__find_if(__first, __last,
-        3: 3793:			    __gnu_cxx::__ops::__iter_equals_val(__val));
+        5: 3792:      return std::__find_if(__first, __last,
+        5: 3793:			    __gnu_cxx::__ops::__iter_equals_val(__val));
         -: 3794:    }
         -: 3795:
         -: 3796:  /**
@@ -3807,7 +3807,7 @@
         -: 3805:  */
         -: 3806:  template<typename _InputIterator, typename _Predicate>
         -: 3807:    inline _InputIterator
-        3: 3808:    find_if(_InputIterator __first, _InputIterator __last,
+        5: 3808:    find_if(_InputIterator __first, _InputIterator __last,
         -: 3809:	    _Predicate __pred)
         -: 3810:    {
         -: 3811:      // concept requirements
@@ -3816,8 +3816,8 @@
         -: 3814:	      typename iterator_traits<_InputIterator>::value_type>)
         -: 3815:      __glibcxx_requires_valid_range(__first, __last);
         -: 3816:
-        6: 3817:      return std::__find_if(__first, __last,
-        6: 3818:			    __gnu_cxx::__ops::__pred_iter(__pred));
+       10: 3817:      return std::__find_if(__first, __last,
+       10: 3818:			    __gnu_cxx::__ops::__pred_iter(__pred));
         -: 3819:    }
         -: 3820:
         -: 3821:  /**
@@ -4165,7 +4165,7 @@
         -: 4163:  template<typename _InputIterator, typename _OutputIterator,
         -: 4164:	   typename _UnaryOperation>
         -: 4165:    _OutputIterator
-       26: 4166:    transform(_InputIterator __first, _InputIterator __last,
+       42: 4166:    transform(_InputIterator __first, _InputIterator __last,
         -: 4167:	      _OutputIterator __result, _UnaryOperation __unary_op)
         -: 4168:    {
         -: 4169:      // concept requirements
@@ -4175,9 +4175,9 @@
         -: 4173:	    __typeof__(__unary_op(*__first))>)
         -: 4174:      __glibcxx_requires_valid_range(__first, __last);
         -: 4175:
-       48: 4176:      for (; __first != __last; ++__first, (void)++__result)
-       22: 4177:	*__result = __unary_op(*__first);
-        4: 4178:      return __result;
+       78: 4176:      for (; __first != __last; ++__first, (void)++__result)
+       36: 4177:	*__result = __unary_op(*__first);
+        6: 4178:      return __result;
         -: 4179:    }
         -: 4180:
         -: 4181:  /**
@@ -4696,7 +4696,7 @@
         -: 4694:  */
         -: 4695:  template<typename _RandomAccessIterator>
         -: 4696:    inline void
-        3: 4697:    sort(_RandomAccessIterator __first, _RandomAccessIterator __last)
+        5: 4697:    sort(_RandomAccessIterator __first, _RandomAccessIterator __last)
         -: 4698:    {
         -: 4699:      // concept requirements
         -: 4700:      __glibcxx_function_requires(_Mutable_RandomAccessIteratorConcept<
@@ -4706,8 +4706,8 @@
         -: 4704:      __glibcxx_requires_valid_range(__first, __last);
         -: 4705:      __glibcxx_requires_irreflexive(__first, __last);
         -: 4706:
-        3: 4707:      std::__sort(__first, __last, __gnu_cxx::__ops::__iter_less_iter());
-        3: 4708:    }
+        5: 4707:      std::__sort(__first, __last, __gnu_cxx::__ops::__iter_less_iter());
+        5: 4708:    }
         -: 4709:
         -: 4710:  /**
         -: 4711:   *  @brief Sort the elements of a sequence using a predicate for comparison.

@@ -92,7 +92,7 @@
         -:   90:   *  it is destroyed or reset.
         -:   91:  */
         -:   92:  template<typename _Tp>
-     1333:   93:    class shared_ptr : public __shared_ptr<_Tp>
+     1357:   93:    class shared_ptr : public __shared_ptr<_Tp>
         -:   94:    {
         -:   95:      template<typename _Ptr>
         -:   96:	using _Convertible
@@ -103,10 +103,10 @@
         -:  101:       *  @brief  Construct an empty %shared_ptr.
         -:  102:       *  @post   use_count()==0 && get()==0
         -:  103:       */
-        9:  104:      constexpr shared_ptr() noexcept
-        9:  105:      : __shared_ptr<_Tp>() { }
+       11:  104:      constexpr shared_ptr() noexcept
+       11:  105:      : __shared_ptr<_Tp>() { }
         -:  106:
-      905:  107:      shared_ptr(const shared_ptr&) noexcept = default;
+      913:  107:      shared_ptr(const shared_ptr&) noexcept = default;
         -:  108:
         -:  109:      /**
         -:  110:       *  @brief  Construct a %shared_ptr that owns the pointer @a __p.
@@ -115,8 +115,8 @@
         -:  113:       *  @throw  std::bad_alloc, in which case @c delete @a __p is called.
         -:  114:       */
         -:  115:      template<typename _Tp1>
-        3:  116:	explicit shared_ptr(_Tp1* __p)
-        3:  117:        : __shared_ptr<_Tp>(__p) { }
+        5:  116:	explicit shared_ptr(_Tp1* __p)
+        5:  117:        : __shared_ptr<_Tp>(__p) { }
         -:  118:
         -:  119:      /**
         -:  120:       *  @brief  Construct a %shared_ptr that owns the pointer @a __p
@@ -220,16 +220,16 @@
         -:  218:       *  @post   get() == __r.get() && use_count() == __r.use_count()
         -:  219:       */
         -:  220:      template<typename _Tp1, typename = _Convertible<_Tp1*>>
-        6:  221:	shared_ptr(const shared_ptr<_Tp1>& __r) noexcept
-        6:  222:        : __shared_ptr<_Tp>(__r) { }
+        8:  221:	shared_ptr(const shared_ptr<_Tp1>& __r) noexcept
+        8:  222:        : __shared_ptr<_Tp>(__r) { }
         -:  223:
         -:  224:      /**
         -:  225:       *  @brief  Move-constructs a %shared_ptr instance from @a __r.
         -:  226:       *  @param  __r  A %shared_ptr rvalue.
         -:  227:       *  @post   *this contains the old value of @a __r, @a __r is empty.
         -:  228:       */
-      328:  229:      shared_ptr(shared_ptr&& __r) noexcept
-      328:  230:      : __shared_ptr<_Tp>(std::move(__r)) { }
+      332:  229:      shared_ptr(shared_ptr&& __r) noexcept
+      332:  230:      : __shared_ptr<_Tp>(std::move(__r)) { }
         -:  231:
         -:  232:      /**
         -:  233:       *  @brief  Move-constructs a %shared_ptr instance from @a __r.
@@ -268,7 +268,7 @@
         -:  266:       *  @brief  Construct an empty %shared_ptr.
         -:  267:       *  @post   use_count() == 0 && get() == nullptr
         -:  268:       */
-        3:  269:      constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+        5:  269:      constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
         -:  270:
         -:  271:      shared_ptr& operator=(const shared_ptr&) noexcept = default;
         -:  272:
@@ -291,18 +291,18 @@
         -:  289:#endif
         -:  290:
         -:  291:      shared_ptr&
-        6:  292:      operator=(shared_ptr&& __r) noexcept
+        8:  292:      operator=(shared_ptr&& __r) noexcept
         -:  293:      {
-        6:  294:	this->__shared_ptr<_Tp>::operator=(std::move(__r));
-        6:  295:	return *this;
+        8:  294:	this->__shared_ptr<_Tp>::operator=(std::move(__r));
+        8:  295:	return *this;
         -:  296:      }
         -:  297:
         -:  298:      template<class _Tp1>
         -:  299:	shared_ptr&
-        5:  300:	operator=(shared_ptr<_Tp1>&& __r) noexcept
+        7:  300:	operator=(shared_ptr<_Tp1>&& __r) noexcept
         -:  301:	{
-        5:  302:	  this->__shared_ptr<_Tp>::operator=(std::move(__r));
-        5:  303:	  return *this;
+        7:  302:	  this->__shared_ptr<_Tp>::operator=(std::move(__r));
+        7:  303:	  return *this;
         -:  304:	}
         -:  305:
         -:  306:      template<typename _Tp1, typename _Del>
@@ -316,10 +316,10 @@
         -:  314:    private:
         -:  315:      // This constructor is non-standard, it is used by allocate_shared.
         -:  316:      template<typename _Alloc, typename... _Args>
-       44:  317:	shared_ptr(_Sp_make_shared_tag __tag, const _Alloc& __a,
+       48:  317:	shared_ptr(_Sp_make_shared_tag __tag, const _Alloc& __a,
         -:  318:		   _Args&&... __args)
-       44:  319:	: __shared_ptr<_Tp>(__tag, __a, std::forward<_Args>(__args)...)
-       44:  320:	{ }
+       48:  319:	: __shared_ptr<_Tp>(__tag, __a, std::forward<_Args>(__args)...)
+       48:  320:	{ }
         -:  321:
         -:  322:      template<typename _Tp1, typename _Alloc, typename... _Args>
         -:  323:	friend shared_ptr<_Tp1>
@@ -616,10 +616,10 @@
         -:  614:   */
         -:  615:  template<typename _Tp, typename _Alloc, typename... _Args>
         -:  616:    inline shared_ptr<_Tp>
-       44:  617:    allocate_shared(const _Alloc& __a, _Args&&... __args)
+       48:  617:    allocate_shared(const _Alloc& __a, _Args&&... __args)
         -:  618:    {
         -:  619:      return shared_ptr<_Tp>(_Sp_make_shared_tag(), __a,
-       44:  620:			     std::forward<_Args>(__args)...);
+       48:  620:			     std::forward<_Args>(__args)...);
         -:  621:    }
         -:  622:
         -:  623:  /**
@@ -631,11 +631,11 @@
         -:  629:   */
         -:  630:  template<typename _Tp, typename... _Args>
         -:  631:    inline shared_ptr<_Tp>
-       44:  632:    make_shared(_Args&&... __args)
+       48:  632:    make_shared(_Args&&... __args)
         -:  633:    {
         -:  634:      typedef typename std::remove_const<_Tp>::type _Tp_nc;
         -:  635:      return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(),
-       44:  636:				       std::forward<_Args>(__args)...);
+       48:  636:				       std::forward<_Args>(__args)...);
         -:  637:    }
         -:  638:
         -:  639:  /// std::hash specialization for shared_ptr.
