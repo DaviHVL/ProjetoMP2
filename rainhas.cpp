@@ -104,6 +104,9 @@ int resposta_rainhas(const string& nomeArquivo) {
     if (verificador_umaRainha(nomeArquivo) == false) {
         return -1;
     }
+    if (verificador_vertical(nomeArquivo) == false) {
+        return -1;
+    }
     return 0;
 }
 

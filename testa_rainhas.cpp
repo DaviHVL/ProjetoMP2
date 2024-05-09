@@ -44,15 +44,15 @@ TEST_CASE( "Tabuleiros com uma rainha em cada linha", "[rainhas]" ) {
 }
 
 TEST_CASE( "Tabuleiros com rainhas na vertical", "[rainhas]" ) {
-    REQUIRE(resposta_rainhas("arquivo11.txt") == -1);
+    REQUIRE(resposta_rainhas("arquivo16.txt") == -1);
 
-    REQUIRE(resposta_rainhas("arquivo12.txt") == -1);
+    REQUIRE(resposta_rainhas("arquivo17.txt") == -1);
 
-    REQUIRE(resposta_rainhas("arquivo13.txt") == -1);
+    REQUIRE(resposta_rainhas("arquivo18.txt") == -1);
 
-    REQUIRE(resposta_rainhas("arquivo14.txt") == -1);
+    REQUIRE(resposta_rainhas("arquivo19.txt") == -1);
 
-    REQUIRE(resposta_rainhas("arquivo15.txt") == -1);
+    REQUIRE(resposta_rainhas("arquivo20.txt") == -1);
 
 
 }
