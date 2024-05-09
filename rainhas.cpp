@@ -79,7 +79,7 @@ Implementação da função para verificar se as rainhas interceptam uma a outra na 
 */
 bool verificador_vertical(const string& nomeArquivo) {
     string tabuleiro = conversor_string(nomeArquivo);
-    for (size_t i = 0; i < 64; i++){
+    for (size_t i = 0; i < 64; i++) {
         if (tabuleiro[i] == '1') {
             for (size_t z = (i+8); z < 64; z+=8) {
                 if (tabuleiro[z] == '1') {
@@ -89,7 +89,6 @@ bool verificador_vertical(const string& nomeArquivo) {
         }
     }
     return true;
-
 }
 
 /*
