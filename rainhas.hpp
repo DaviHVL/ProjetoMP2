@@ -35,6 +35,10 @@ Função para retirar todos '\n' e '\r' presentes na string.
 */
 string limpa_string(string str);
 
+/*
+Função para verificar se as rainhas interceptam uma a outra na vertical.
+*/
+bool verificador_vertical(const string& nomeArquivo);
 
 #endif   // RAINHAS_H_INCLUDED
 
