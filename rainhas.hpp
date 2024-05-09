@@ -48,5 +48,10 @@ Função para verificar se as rainhas interceptam uma a outra na diagonal.
 */
 bool verificador_diagonal(const std::string& nomeArquivo);
 
+/*
+Função para gerar o arquivo ataques.txt.
+*/
+void gerador_ataques(const std::string& arquivoAtaques);
+
 #endif   // RAINHAS_H_INCLUDED
 
