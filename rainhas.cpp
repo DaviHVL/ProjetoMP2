@@ -3,6 +3,7 @@
 #include <sstream>
 #include <algorithm>
 #include <cmath>
+#include <vector>
 
 /*
 Implementação da função para retirar todos '\n' e '\r' presentes na string.
@@ -129,7 +130,7 @@ int resposta_rainhas(const string& nomeArquivo) {
     }
 
     if (verificador_umaRainha(nomeArquivo) == false) {
-        return -1;
+        return 0;
     }
 
     if (verificador_vertical(nomeArquivo) == false) {
