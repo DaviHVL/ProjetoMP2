@@ -141,7 +141,7 @@ bool verificador_diagonal(const string& nomeArquivo) {
 Função para gerar o arquivo ataques.txt.
 */
 void gerador_ataques(const string& arquivoAtaques) {
-    string tabuleiro = conversor_string(nomeArquivo);
+    string tabuleiro = conversor_string(arquivoAtaques);
     vector<vector<int>> matriz(8, vector<int>(8, 0));
 
     for (int i = 0; i < 64; ++i) {
@@ -160,9 +160,10 @@ void gerador_ataques(const string& arquivoAtaques) {
                 }
             }
         }
+    }
 
-        for (int i = 0; i < posis.size(); ++i) {
-            for (int j = i + 1; j < posis.size(); ++j) {
+        for (size_t i = 0; i < posis.size(); ++i) {
+            for (size_t j = i + 1; j < posis.size(); ++j) {
                 int x1 = posis[i].first, y1 = posis[i].second;
                 int x2 = posis[j].first, y2 = posis[j].second;
                 if (x1 == x2 || y1 == y2 || abs(x1 - x2) == abs(y1 - y2)) {
@@ -191,17 +192,17 @@ int resposta_rainhas(const string& nomeArquivo) {
     }
 
     if (verificador_umaRainha(nomeArquivo) == false) {
-        gerador_ataques(arquivoAtaques);
+        gerador_ataques(nomeArquivo);
         return 0;
     }
 
     if (verificador_vertical(nomeArquivo) == false) {
-        gerador_ataques(arquivoAtaques);
+        gerador_ataques(nomeArquivo);
         return 0;
     }
 
     if (verificador_diagonal(nomeArquivo) == false) {
-        gerador_ataques(arquivoAtaques);
+        gerador_ataques(nomeArquivo);
         return 0;
     }
 
