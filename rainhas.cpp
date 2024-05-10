@@ -160,19 +160,19 @@ void gerador_ataques(const string& arquivoAtaques) {
                 }
             }
         }
-    }
 
         for (size_t i = 0; i < posis.size(); ++i) {
             for (size_t j = i + 1; j < posis.size(); ++j) {
                 int x1 = posis[i].first, y1 = posis[i].second;
                 int x2 = posis[j].first, y2 = posis[j].second;
                 if (x1 == x2 || y1 == y2 || abs(x1 - x2) == abs(y1 - y2)) {
-                    outFile << x1 << ", " << y1
-                    << " " << x2 << ", " << y2 << "\n";
+                    outFile << x1 << "," << y1
+                    << " " << x2 << "," << y2 << "\n";
                 }
             }
         }
         outFile.close();
+    }
 }
 
 /*
