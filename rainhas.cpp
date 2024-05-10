@@ -1,3 +1,9 @@
+/**
+ * @file main.cpp
+ * @brief Arquivo fonte principal contendo a implementação das funções necessárias para a verificação das rainhas.
+ * Inclui funções para manipular e verificar configurações de rainhas em um tabuleiro de xadrez.
+ */
+
 #include "rainhas.hpp"
 #include <fstream>
 #include <sstream>
@@ -8,18 +14,23 @@
 
 using namespace std;
 
-/*
-Implementação da função para retirar todos '\n' e '\r' presentes na string.
-*/
+/**
+ * @brief Remove todos os caracteres '\n' e '\r' de uma string.
+ * @param str String para ser limpa.
+ * @return String com todos '\n' e '\r' removidos.
+ */
 string limpa_string(string str) {
     str.erase(remove(str.begin(), str.end(), '\n'), str.end());
     str.erase(remove(str.begin(), str.end(), '\r'), str.end());
     return str;
 }
 
-/*
-Implementação da função para converter o que está no arquivo .txt em uma string.
-*/
+/**
+ * @brief Converte o conteúdo de um arquivo .txt em uma única string.
+ * @param nomeArquivo Caminho do arquivo a ser lido.
+ * @return Uma string contendo o conteúdo do arquivo, sem linhas novas.
+ * @exception runtime_error Lançada se o arquivo não puder ser aberto.
+ */
 string conversor_string(const string& nomeArquivo) {
     ifstream file(nomeArquivo);
     stringstream resp;
@@ -33,9 +44,11 @@ string conversor_string(const string& nomeArquivo) {
     }
 }
 
-/*
-Implementação da função para verificar se todos caracteres são 0 ou 1.
-*/
+/**
+ * @brief Verifica se todos os caracteres em uma string são '0' ou '1'.
+ * @param nomeArquivo Caminho do arquivo que contém a configuração do tabuleiro.
+ * @return True se todos os caracteres forem '0' ou '1', false caso contrário.
+ */
 bool verificador_caracteres(const string& nomeArquivo) {
     string tabuleiro = conversor_string(nomeArquivo);
     for (size_t i = 0; i < tabuleiro.length(); i++) {
@@ -46,9 +59,11 @@ bool verificador_caracteres(const string& nomeArquivo) {
     return true;
 }
 
-/*
-Implementação da função para verificar se há 64 caracteres.
-*/
+/**
+ * @brief Verifica se a string possui exatamente 64 caracteres.
+ * @param nomeArquivo Caminho do arquivo para verificação.
+ * @return True se a string tiver 64 caracteres, false caso contrário.
+ */
 bool verificador_numeros(const string& nomeArquivo) {
     string tabuleiro = conversor_string(nomeArquivo);
     if (tabuleiro.length() == 64) {
@@ -58,9 +73,11 @@ bool verificador_numeros(const string& nomeArquivo) {
     }
 }
 
-/*
-Implementação da função para verificar se há exatamente 8 rainhas.
-*/
+/**
+ * @brief Verifica a presença de exatamente 8 rainhas, representadas pelo '1', na string.
+ * @param nomeArquivo Caminho do arquivo para verificação.
+ * @return True se houver exatamente oito rainhas, false caso contrário.
+ */
 bool verificador_numeroRainhas(const string& nomeArquivo) {
     string tabuleiro = conversor_string(nomeArquivo);
     int contad = 0;
@@ -76,9 +93,11 @@ bool verificador_numeroRainhas(const string& nomeArquivo) {
     }
 }
 
-/*
-Implementação da função para verificar se há apenas uma 1 rainha em cada linha do tabuleiro.
-*/
+/**
+ * @brief Verifica se cada linha do tabuleiro possui exatamente uma rainha.
+ * @param nomeArquivo Caminho do arquivo que contém a configuração do tabuleiro.
+ * @return True se cada linha tiver exatamente uma rainha, false caso contrário.
+ */
 bool verificador_umaRainha(const string& nomeArquivo) {
     string tabuleiro = conversor_string(nomeArquivo);
     for (size_t i = 0; i < 64; i += 8) {
@@ -95,9 +114,11 @@ bool verificador_umaRainha(const string& nomeArquivo) {
     return true;
 }
 
-/*
-Implementação da função para verificar se as rainhas interceptam uma a outra na vertical.
-*/
+/**
+ * @brief Verifica se as rainhas se atacam na vertical.
+ * @param nomeArquivo Caminho do arquivo que contém a configuração do tabuleiro.
+ * @return True se nenhuma rainha atacar outra na vertical, false caso encontre ataques.
+ */
 bool verificador_vertical(const string& nomeArquivo) {
     string tabuleiro = conversor_string(nomeArquivo);
     for (size_t i = 0; i < 64; i++) {
@@ -112,9 +133,11 @@ bool verificador_vertical(const string& nomeArquivo) {
     return true;
 }
 
-/*
-Função para verificar se as rainhas interceptam uma a outra na diagonal.
-*/
+/**
+ * @brief Verifica se as rainhas se atacam nas diagonais.
+ * @param nomeArquivo Caminho do arquivo que contém a configuração do tabuleiro.
+ * @return True se nenhuma rainha atacar outra na diagonal, false caso encontre ataques.
+ */
 bool verificador_diagonal(const string& nomeArquivo) {
     string tabuleiro = conversor_string(nomeArquivo);
     vector<int> colunas(8, -1);
@@ -137,9 +160,10 @@ bool verificador_diagonal(const string& nomeArquivo) {
     return true;
 }
 
-/*
-Função para gerar o arquivo ataques.txt.
-*/
+/**
+ * @brief Gera um arquivo chamado ataques.txt listando pares de rainhas que se atacam.
+ * @param arquivoAtaques Caminho para o arquivo de entrada com a configuração do tabuleiro.
+ */
 void gerador_ataques(const string& arquivoAtaques) {
     string tabuleiro = conversor_string(arquivoAtaques);
     vector<vector<int>> matriz(8, vector<int>(8, 0));
@@ -175,9 +199,11 @@ void gerador_ataques(const string& arquivoAtaques) {
     }
 }
 
-/*
-Implementação da função principal.
-*/
+/**
+ * @brief Função principal para verificar se o arquivo possui uma configuração que satisfaz o problema.
+ * @param nomeArquivo Caminho para o arquivo contendo a configuração do tabuleiro.
+ * @return Código inteiro representando o resultado das verificações (-1 para entrada inválida, 0 para ataques presentes e 1 para configuração válida).
+ */
 int resposta_rainhas(const string& nomeArquivo) {
     if (verificador_caracteres(nomeArquivo) == false) {
         return -1;
