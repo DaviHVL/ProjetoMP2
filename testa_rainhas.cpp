@@ -14,7 +14,6 @@ TEST_CASE("Tabuleiros com caracteres invalidos", "[rainhas]") {
     REQUIRE(resposta_rainhas("arquivo5.txt") == -1);
 }
 
-
 TEST_CASE("Tabuleiros com numero inadequado de caracteres", "[rainhas]") {
     REQUIRE(resposta_rainhas("arquivo6.txt") == -1);
 
@@ -62,3 +61,4 @@ TEST_CASE("Tabuleiros com rainhas na diagonal", "[rainhas]") {
 
     REQUIRE(resposta_rainhas("arquivo25.txt") == 0);
 }
+
