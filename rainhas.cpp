@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
@@ -139,7 +140,7 @@ bool verificador_diagonal(const string& nomeArquivo) {
 /*
 Função para gerar o arquivo ataques.txt.
 */
-void gerador_ataques(const string& arquivoAtaques){
+void gerador_ataques(const string& arquivoAtaques) {
     string tabuleiro = conversor_string(nomeArquivo);
     vector<vector<int>> matriz(8, vector<int>(8, 0));
 
@@ -165,7 +166,8 @@ void gerador_ataques(const string& arquivoAtaques){
                 int x1 = posis[i].first, y1 = posis[i].second;
                 int x2 = posis[j].first, y2 = posis[j].second;
                 if (x1 == x2 || y1 == y2 || abs(x1 - x2) == abs(y1 - y2)) {
-                    outFile << x1 << ", " << y1 << " " << x2 << ", " << y2 << "\n";
+                    outFile << x1 << ", " << y1
+                    << " " << x2 << ", " << y2 << "\n";
                 }
             }
         }
@@ -189,14 +191,17 @@ int resposta_rainhas(const string& nomeArquivo) {
     }
 
     if (verificador_umaRainha(nomeArquivo) == false) {
+        gerador_ataques(arquivoAtaques);
         return 0;
     }
 
     if (verificador_vertical(nomeArquivo) == false) {
+        gerador_ataques(arquivoAtaques);
         return 0;
     }
 
     if (verificador_diagonal(nomeArquivo) == false) {
+        gerador_ataques(arquivoAtaques);
         return 0;
     }
 
