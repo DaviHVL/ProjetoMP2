@@ -186,20 +186,20 @@
         -:  184:    {
         -:  185:      _Value& _M_value;
         -:  186:
-      157:  187:      _Iter_equals_val(_Value& __value)
-      157:  188:	: _M_value(__value)
-      157:  189:      { }
+      207:  187:      _Iter_equals_val(_Value& __value)
+      207:  188:	: _M_value(__value)
+      207:  189:      { }
         -:  190:
         -:  191:      template<typename _Iterator>
         -:  192:	bool
-     9794:  193:	operator()(_Iterator __it)
-     9794:  194:	{ return *__it == _M_value; }
+    13169:  193:	operator()(_Iterator __it)
+    13169:  194:	{ return *__it == _M_value; }
         -:  195:    };
         -:  196:
         -:  197:  template<typename _Value>
         -:  198:    inline _Iter_equals_val<_Value>
-      157:  199:    __iter_equals_val(_Value& __val)
-      157:  200:    { return _Iter_equals_val<_Value>(__val); }
+      207:  199:    __iter_equals_val(_Value& __val)
+      207:  200:    { return _Iter_equals_val<_Value>(__val); }
         -:  201:
         -:  202:  template<typename _Iterator1>
         -:  203:    struct _Iter_equals_iter

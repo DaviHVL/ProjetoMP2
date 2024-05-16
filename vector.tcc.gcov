@@ -90,18 +90,18 @@
         -:   88:  template<typename _Tp, typename _Alloc>
         -:   89:    template<typename... _Args>
         -:   90:      void
-    #####:   91:      vector<_Tp, _Alloc>::
+       96:   91:      vector<_Tp, _Alloc>::
         -:   92:      emplace_back(_Args&&... __args)
         -:   93:      {
-    #####:   94:	if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+       96:   94:	if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
         -:   95:	  {
-    #####:   96:	    _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
+       48:   96:	    _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
         -:   97:				     std::forward<_Args>(__args)...);
-    #####:   98:	    ++this->_M_impl._M_finish;
+       48:   98:	    ++this->_M_impl._M_finish;
         -:   99:	  }
         -:  100:	else
-    #####:  101:	  _M_emplace_back_aux(std::forward<_Args>(__args)...);
-    #####:  102:      }
+       48:  101:	  _M_emplace_back_aux(std::forward<_Args>(__args)...);
+       96:  102:      }
         -:  103:#endif
         -:  104:
         -:  105:  template<typename _Tp, typename _Alloc>
@@ -406,25 +406,25 @@
         -:  404:  template<typename _Tp, typename _Alloc>
         -:  405:    template<typename... _Args>
         -:  406:      void
-       94:  407:      vector<_Tp, _Alloc>::
+      142:  407:      vector<_Tp, _Alloc>::
         -:  408:      _M_emplace_back_aux(_Args&&... __args)
         -:  409:      {
         -:  410:	const size_type __len =
-       94:  411:	  _M_check_len(size_type(1), "vector::_M_emplace_back_aux");
-       94:  412:	pointer __new_start(this->_M_allocate(__len));
-       94:  413:	pointer __new_finish(__new_start);
+      142:  411:	  _M_check_len(size_type(1), "vector::_M_emplace_back_aux");
+      142:  412:	pointer __new_start(this->_M_allocate(__len));
+      142:  413:	pointer __new_finish(__new_start);
         -:  414:	__try
         -:  415:	  {
-       94:  416:	    _Alloc_traits::construct(this->_M_impl, __new_start + size(),
+      142:  416:	    _Alloc_traits::construct(this->_M_impl, __new_start + size(),
         -:  417:				     std::forward<_Args>(__args)...);
-       94:  418:	    __new_finish = pointer();
+      142:  418:	    __new_finish = pointer();
         -:  419:
-       94:  420:	    __new_finish
+      142:  420:	    __new_finish
         -:  421:	      = std::__uninitialized_move_if_noexcept_a
-       94:  422:	      (this->_M_impl._M_start, this->_M_impl._M_finish,
-       94:  423:	       __new_start, _M_get_Tp_allocator());
+      142:  422:	      (this->_M_impl._M_start, this->_M_impl._M_finish,
+      142:  423:	       __new_start, _M_get_Tp_allocator());
         -:  424:
-       94:  425:	    ++__new_finish;
+      142:  425:	    ++__new_finish;
         -:  426:	  }
     =====:  427:	__catch(...)
         -:  428:	  {
@@ -435,15 +435,15 @@
     =====:  433:	    _M_deallocate(__new_start, __len);
     =====:  434:	    __throw_exception_again;
         -:  435:	  }
-       94:  436:	std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
-       94:  437:		      _M_get_Tp_allocator());
-       94:  438:	_M_deallocate(this->_M_impl._M_start,
-       94:  439:		      this->_M_impl._M_end_of_storage
-       94:  440:		      - this->_M_impl._M_start);
-       94:  441:	this->_M_impl._M_start = __new_start;
-       94:  442:	this->_M_impl._M_finish = __new_finish;
-       94:  443:	this->_M_impl._M_end_of_storage = __new_start + __len;
-       94:  444:      }
+      142:  436:	std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+      142:  437:		      _M_get_Tp_allocator());
+      142:  438:	_M_deallocate(this->_M_impl._M_start,
+      142:  439:		      this->_M_impl._M_end_of_storage
+      142:  440:		      - this->_M_impl._M_start);
+      142:  441:	this->_M_impl._M_start = __new_start;
+      142:  442:	this->_M_impl._M_finish = __new_finish;
+      142:  443:	this->_M_impl._M_end_of_storage = __new_start + __len;
+      142:  444:      }
         -:  445:#endif
         -:  446:
         -:  447:  template<typename _Tp, typename _Alloc>

@@ -73,8 +73,8 @@
         -:   71:#if __cplusplus >= 201103L
         -:   72:  template<typename _T1, typename... _Args>
         -:   73:    inline void
-     2624:   74:    _Construct(_T1* __p, _Args&&... __args)
-     2624:   75:    { ::new(static_cast<void*>(__p)) _T1(std::forward<_Args>(__args)...); }
+     2804:   74:    _Construct(_T1* __p, _Args&&... __args)
+     2804:   75:    { ::new(static_cast<void*>(__p)) _T1(std::forward<_Args>(__args)...); }
         -:   76:#else
         -:   77:  template<typename _T1, typename _T2>
         -:   78:    inline void
@@ -91,19 +91,19 @@
         -:   89:   */
         -:   90:  template<typename _Tp>
         -:   91:    inline void
-     2718:   92:    _Destroy(_Tp* __pointer)
-     2718:   93:    { __pointer->~_Tp(); }
+     2814:   92:    _Destroy(_Tp* __pointer)
+     2814:   93:    { __pointer->~_Tp(); }
         -:   94:
         -:   95:  template<bool>
         -:   96:    struct _Destroy_aux
         -:   97:    {
         -:   98:      template<typename _ForwardIterator>
         -:   99:        static void
-     4204:  100:        __destroy(_ForwardIterator __first, _ForwardIterator __last)
+     4312:  100:        __destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  101:	{
-     6922:  102:	  for (; __first != __last; ++__first)
-     2718:  103:	    std::_Destroy(std::__addressof(*__first));
-     1486:  104:	}
+     7126:  102:	  for (; __first != __last; ++__first)
+     2814:  103:	    std::_Destroy(std::__addressof(*__first));
+     1498:  104:	}
         -:  105:    };
         -:  106:
         -:  107:  template<>
@@ -111,7 +111,7 @@
         -:  109:    {
         -:  110:      template<typename _ForwardIterator>
         -:  111:        static void
-       10:  112:        __destroy(_ForwardIterator, _ForwardIterator) { }
+      178:  112:        __destroy(_ForwardIterator, _ForwardIterator) { }
         -:  113:    };
         -:  114:
         -:  115:  /**
@@ -121,13 +121,13 @@
         -:  119:   */
         -:  120:  template<typename _ForwardIterator>
         -:  121:    inline void
-     1496:  122:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
+     1676:  122:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  123:    {
         -:  124:      typedef typename iterator_traits<_ForwardIterator>::value_type
         -:  125:                       _Value_type;
-     1496:  126:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
+     1676:  126:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
         -:  127:	__destroy(__first, __last);
-     1496:  128:    }
+     1676:  128:    }
         -:  129:
         -:  130:  /**
         -:  131:   * Destroy a range of objects using the supplied allocator.  For
@@ -147,11 +147,11 @@
         -:  145:
         -:  146:  template<typename _ForwardIterator, typename _Tp>
         -:  147:    inline void
-     1496:  148:    _Destroy(_ForwardIterator __first, _ForwardIterator __last,
+     1676:  148:    _Destroy(_ForwardIterator __first, _ForwardIterator __last,
         -:  149:	     allocator<_Tp>&)
         -:  150:    {
-     1496:  151:      _Destroy(__first, __last);
-     1496:  152:    }
+     1676:  151:      _Destroy(__first, __last);
+     1676:  152:    }
         -:  153:
         -:  154:_GLIBCXX_END_NAMESPACE_VERSION
         -:  155:} // namespace std

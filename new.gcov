@@ -145,8 +145,8 @@
         -:  143:#endif
         -:  144:
         -:  145:// Default placement versions of operator new.
-     2849:  146:inline void* operator new(std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
-     2849:  147:{ return __p; }
+     3125:  146:inline void* operator new(std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
+     3125:  147:{ return __p; }
         -:  148:inline void* operator new[](std::size_t, void* __p) _GLIBCXX_USE_NOEXCEPT
         -:  149:{ return __p; }
         -:  150:

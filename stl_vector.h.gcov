@@ -78,20 +78,20 @@
         -:   76:      typedef typename __gnu_cxx::__alloc_traits<_Tp_alloc_type>::pointer
         -:   77:       	pointer;
         -:   78:
-     1385:   79:      struct _Vector_impl 
+     1517:   79:      struct _Vector_impl 
         -:   80:      : public _Tp_alloc_type
         -:   81:      {
         -:   82:	pointer _M_start;
         -:   83:	pointer _M_finish;
         -:   84:	pointer _M_end_of_storage;
         -:   85:
-       83:   86:	_Vector_impl()
-       83:   87:	: _Tp_alloc_type(), _M_start(), _M_finish(), _M_end_of_storage()
-       83:   88:	{ }
+       95:   86:	_Vector_impl()
+       95:   87:	: _Tp_alloc_type(), _M_start(), _M_finish(), _M_end_of_storage()
+       95:   88:	{ }
         -:   89:
-      952:   90:	_Vector_impl(_Tp_alloc_type const& __a) _GLIBCXX_NOEXCEPT
-      952:   91:	: _Tp_alloc_type(__a), _M_start(), _M_finish(), _M_end_of_storage()
-      952:   92:	{ }
+     1072:   90:	_Vector_impl(_Tp_alloc_type const& __a) _GLIBCXX_NOEXCEPT
+     1072:   91:	: _Tp_alloc_type(__a), _M_start(), _M_finish(), _M_end_of_storage()
+     1072:   92:	{ }
         -:   93:
         -:   94:#if __cplusplus >= 201103L
       350:   95:	_Vector_impl(_Tp_alloc_type&& __a) noexcept
@@ -112,19 +112,19 @@
         -:  110:      typedef _Alloc allocator_type;
         -:  111:
         -:  112:      _Tp_alloc_type&
-     2902:  113:      _M_get_Tp_allocator() _GLIBCXX_NOEXCEPT
-     2902:  114:      { return *static_cast<_Tp_alloc_type*>(&this->_M_impl); }
+     3250:  113:      _M_get_Tp_allocator() _GLIBCXX_NOEXCEPT
+     3250:  114:      { return *static_cast<_Tp_alloc_type*>(&this->_M_impl); }
         -:  115:
         -:  116:      const _Tp_alloc_type&
-     1132:  117:      _M_get_Tp_allocator() const _GLIBCXX_NOEXCEPT
-     1132:  118:      { return *static_cast<const _Tp_alloc_type*>(&this->_M_impl); }
+     1324:  117:      _M_get_Tp_allocator() const _GLIBCXX_NOEXCEPT
+     1324:  118:      { return *static_cast<const _Tp_alloc_type*>(&this->_M_impl); }
         -:  119:
         -:  120:      allocator_type
        10:  121:      get_allocator() const _GLIBCXX_NOEXCEPT
        10:  122:      { return allocator_type(_M_get_Tp_allocator()); }
         -:  123:
-       83:  124:      _Vector_base()
-       83:  125:      : _M_impl() { }
+       95:  124:      _Vector_base()
+       95:  125:      : _M_impl() { }
         -:  126:
        12:  127:      _Vector_base(const allocator_type& __a) _GLIBCXX_NOEXCEPT
        12:  128:      : _M_impl(__a) { }
@@ -133,9 +133,9 @@
         -:  131:      : _M_impl()
         -:  132:      { _M_create_storage(__n); }
         -:  133:
-      940:  134:      _Vector_base(size_t __n, const allocator_type& __a)
-      940:  135:      : _M_impl(__a)
-      940:  136:      { _M_create_storage(__n); }
+     1060:  134:      _Vector_base(size_t __n, const allocator_type& __a)
+     1060:  135:      : _M_impl(__a)
+     1060:  136:      { _M_create_storage(__n); }
         -:  137:
         -:  138:#if __cplusplus >= 201103L
         -:  139:      _Vector_base(_Tp_alloc_type&& __a) noexcept
@@ -158,36 +158,36 @@
         -:  156:      }
         -:  157:#endif
         -:  158:
-     1385:  159:      ~_Vector_base() _GLIBCXX_NOEXCEPT
-     2770:  160:      { _M_deallocate(this->_M_impl._M_start, this->_M_impl._M_end_of_storage
-     2770:  161:		      - this->_M_impl._M_start); }
+     1517:  159:      ~_Vector_base() _GLIBCXX_NOEXCEPT
+     3034:  160:      { _M_deallocate(this->_M_impl._M_start, this->_M_impl._M_end_of_storage
+     3034:  161:		      - this->_M_impl._M_start); }
         -:  162:
         -:  163:    public:
         -:  164:      _Vector_impl _M_impl;
         -:  165:
         -:  166:      pointer
-     1036:  167:      _M_allocate(size_t __n)
+     1204:  167:      _M_allocate(size_t __n)
         -:  168:      {
         -:  169:	typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
-     1036:  170:	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+     1204:  170:	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
         -:  171:      }
         -:  172:
         -:  173:      void
-     1479:  174:      _M_deallocate(pointer __p, size_t __n)
+     1659:  174:      _M_deallocate(pointer __p, size_t __n)
         -:  175:      {
         -:  176:	typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
-     1479:  177:	if (__p)
-      970:  178:	  _Tr::deallocate(_M_impl, __p, __n);
-     1479:  179:      }
+     1659:  177:	if (__p)
+     1138:  178:	  _Tr::deallocate(_M_impl, __p, __n);
+     1659:  179:      }
         -:  180:
         -:  181:    private:
         -:  182:      void
-      940:  183:      _M_create_storage(size_t __n)
+     1060:  183:      _M_create_storage(size_t __n)
         -:  184:      {
-      940:  185:	this->_M_impl._M_start = this->_M_allocate(__n);
-      940:  186:	this->_M_impl._M_finish = this->_M_impl._M_start;
-      940:  187:	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
-      940:  188:      }
+     1060:  185:	this->_M_impl._M_start = this->_M_allocate(__n);
+     1060:  186:	this->_M_impl._M_finish = this->_M_impl._M_start;
+     1060:  187:	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+     1060:  188:      }
         -:  189:    };
         -:  190:
         -:  191:
@@ -254,11 +254,11 @@
         -:  252:      /**
         -:  253:       *  @brief  Creates a %vector with no elements.
         -:  254:       */
-       83:  255:      vector()
+       95:  255:      vector()
         -:  256:#if __cplusplus >= 201103L
         -:  257:      noexcept(is_nothrow_default_constructible<_Alloc>::value)
         -:  258:#endif
-       83:  259:      : _Base() { }
+       95:  259:      : _Base() { }
         -:  260:
         -:  261:      /**
         -:  262:       *  @brief  Creates a %vector with no elements.
@@ -290,10 +290,10 @@
         -:  288:       *
         -:  289:       *  This constructor fills the %vector with @a __n copies of @a __value.
         -:  290:       */
-        6:  291:      vector(size_type __n, const value_type& __value,
+       30:  291:      vector(size_type __n, const value_type& __value,
         -:  292:	     const allocator_type& __a = allocator_type())
-        6:  293:      : _Base(__n, __a)
-        6:  294:      { _M_fill_initialize(__n, __value); }
+       30:  293:      : _Base(__n, __a)
+       30:  294:      { _M_fill_initialize(__n, __value); }
         -:  295:#else
         -:  296:      /**
         -:  297:       *  @brief  Creates a %vector with copies of an exemplar element.
@@ -319,14 +319,14 @@
         -:  317:       *  but any extra memory in
         -:  318:       *  @a __x (for fast expansion) will not be copied.
         -:  319:       */
-      934:  320:      vector(const vector& __x)
+     1030:  320:      vector(const vector& __x)
         -:  321:      : _Base(__x.size(),
-      934:  322:        _Alloc_traits::_S_select_on_copy(__x._M_get_Tp_allocator()))
-      934:  323:      { this->_M_impl._M_finish =
-      934:  324:	  std::__uninitialized_copy_a(__x.begin(), __x.end(),
+     1030:  322:        _Alloc_traits::_S_select_on_copy(__x._M_get_Tp_allocator()))
+     1030:  323:      { this->_M_impl._M_finish =
+     1030:  324:	  std::__uninitialized_copy_a(__x.begin(), __x.end(),
         -:  325:				      this->_M_impl._M_start,
-      934:  326:				      _M_get_Tp_allocator());
-      934:  327:      }
+     1030:  326:				      _M_get_Tp_allocator());
+     1030:  327:      }
         -:  328:
         -:  329:#if __cplusplus >= 201103L
         -:  330:      /**
@@ -424,9 +424,9 @@
         -:  422:       *  not touched in any way.  Managing the pointer is the user's
         -:  423:       *  responsibility.
         -:  424:       */
-     1385:  425:      ~vector() _GLIBCXX_NOEXCEPT
-     1385:  426:      { std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
-     2770:  427:		      _M_get_Tp_allocator()); }
+     1517:  425:      ~vector() _GLIBCXX_NOEXCEPT
+     1517:  426:      { std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+     3034:  427:		      _M_get_Tp_allocator()); }
         -:  428:
         -:  429:      /**
         -:  430:       *  @brief  %Vector assignment operator.
@@ -556,8 +556,8 @@
         -:  554:       *  element order.
         -:  555:       */
         -:  556:      const_iterator
-      972:  557:      begin() const _GLIBCXX_NOEXCEPT
-      972:  558:      { return const_iterator(this->_M_impl._M_start); }
+     1068:  557:      begin() const _GLIBCXX_NOEXCEPT
+     1068:  558:      { return const_iterator(this->_M_impl._M_start); }
         -:  559:
         -:  560:      /**
         -:  561:       *  Returns a read/write iterator that points one past the last
@@ -574,8 +574,8 @@
         -:  572:       *  ordinary element order.
         -:  573:       */
         -:  574:      const_iterator
-      977:  575:      end() const _GLIBCXX_NOEXCEPT
-      977:  576:      { return const_iterator(this->_M_impl._M_finish); }
+     1073:  575:      end() const _GLIBCXX_NOEXCEPT
+     1073:  576:      { return const_iterator(this->_M_impl._M_finish); }
         -:  577:
         -:  578:      /**
         -:  579:       *  Returns a read/write reverse iterator that points to the
@@ -654,13 +654,13 @@
         -:  652:      // [23.2.4.2] capacity
         -:  653:      /**  Returns the number of elements in the %vector.  */
         -:  654:      size_type
-     1414:  655:      size() const _GLIBCXX_NOEXCEPT
-     1414:  656:      { return size_type(this->_M_impl._M_finish - this->_M_impl._M_start); }
+     2290:  655:      size() const _GLIBCXX_NOEXCEPT
+     2290:  656:      { return size_type(this->_M_impl._M_finish - this->_M_impl._M_start); }
         -:  657:
         -:  658:      /**  Returns the size() of the largest possible %vector.  */
         -:  659:      size_type
-      188:  660:      max_size() const _GLIBCXX_NOEXCEPT
-      188:  661:      { return _Alloc_traits::max_size(_M_get_Tp_allocator()); }
+      284:  660:      max_size() const _GLIBCXX_NOEXCEPT
+      284:  661:      { return _Alloc_traits::max_size(_M_get_Tp_allocator()); }
         -:  662:
         -:  663:#if __cplusplus >= 201103L
         -:  664:      /**
@@ -779,8 +779,8 @@
         -:  777:       *  see at().)
         -:  778:       */
         -:  779:      reference
-      114:  780:      operator[](size_type __n) _GLIBCXX_NOEXCEPT
-      114:  781:      { return *(this->_M_impl._M_start + __n); }
+     4530:  780:      operator[](size_type __n) _GLIBCXX_NOEXCEPT
+     4530:  781:      { return *(this->_M_impl._M_start + __n); }
         -:  782:
         -:  783:      /**
         -:  784:       *  @brief  Subscript access to the data contained in the %vector.
@@ -931,8 +931,8 @@
         -:  929:
         -:  930:#if __cplusplus >= 201103L
         -:  931:      void
-    #####:  932:      push_back(value_type&& __x)
-    #####:  933:      { emplace_back(std::move(__x)); }
+       96:  932:      push_back(value_type&& __x)
+       96:  933:      { emplace_back(std::move(__x)); }
         -:  934:
         -:  935:      template<typename... _Args>
         -:  936:        void
@@ -1295,12 +1295,12 @@
         -: 1293:      // Called by the first initialize_dispatch above and by the
         -: 1294:      // vector(n,value,a) constructor.
         -: 1295:      void
-        6: 1296:      _M_fill_initialize(size_type __n, const value_type& __value)
+       30: 1296:      _M_fill_initialize(size_type __n, const value_type& __value)
         -: 1297:      {
-        6: 1298:	this->_M_impl._M_finish =
-        6: 1299:	  std::__uninitialized_fill_n_a(this->_M_impl._M_start, __n, __value,
-        6: 1300:					_M_get_Tp_allocator());
-        6: 1301:      }
+       30: 1298:	this->_M_impl._M_finish =
+       30: 1299:	  std::__uninitialized_fill_n_a(this->_M_impl._M_start, __n, __value,
+       30: 1300:					_M_get_Tp_allocator());
+       30: 1301:      }
         -: 1302:
         -: 1303:#if __cplusplus >= 201103L
         -: 1304:      // Called by the vector(n) constructor.
@@ -1419,13 +1419,13 @@
         -: 1417:
         -: 1418:      // Called by the latter.
         -: 1419:      size_type
-       94: 1420:      _M_check_len(size_type __n, const char* __s) const
+      142: 1420:      _M_check_len(size_type __n, const char* __s) const
         -: 1421:      {
-       94: 1422:	if (max_size() - size() < __n)
+      142: 1422:	if (max_size() - size() < __n)
     #####: 1423:	  __throw_length_error(__N(__s));
         -: 1424:
-       94: 1425:	const size_type __len = size() + std::max(size(), __n);
-       94: 1426:	return (__len < size() || __len > max_size()) ? max_size() : __len;
+      142: 1425:	const size_type __len = size() + std::max(size(), __n);
+      142: 1426:	return (__len < size() || __len > max_size()) ? max_size() : __len;
         -: 1427:      }
         -: 1428:
         -: 1429:      // Internal erase functions follow.
